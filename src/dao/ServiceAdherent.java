@@ -6,7 +6,7 @@ import java.util.*;
 import metier.*;
 import persistance.*;
 
-public class Service {
+public class ServiceAdherent {
 
 	// Mise à jour des caractéristiques d'un adhérent
 	// Le booleen indique s'il s'agit d'un nouvel adhérent, auquel cas on fait

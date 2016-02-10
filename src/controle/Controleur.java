@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import metier.*;
-import dao.Service;
+import dao.ServiceAdherent;
+import dao.ServiceOeuvrepret;
 import meserreurs.*;
 
 /**
@@ -26,6 +27,8 @@ public class Controleur extends HttpServlet {
 	private static final String INSERER_ADHERENT = "insererAdherent";
 	private static final String ERROR_KEY = "messageErreur";
 	private static final String ERROR_PAGE = "/erreur.jsp";
+	
+	private static final String LISTER_OEUVREPRETS = "listerOeuvres";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -63,7 +66,7 @@ public class Controleur extends HttpServlet {
 		if (LISTER_RADHERENT.equals(actionName)) {
 			try {
 
-				Service unService = new Service();
+				ServiceAdherent unService = new ServiceAdherent();
 				request.setAttribute("mesAdherents", unService.consulterListeAdherents());
 
 			} catch (MonException e) {
@@ -73,7 +76,21 @@ public class Controleur extends HttpServlet {
 
 			destinationPage = "/listerAdherent.jsp";
 		}
+        
+		else if (LISTER_OEUVREPRETS.equals(actionName)) {
+			try {
 
+				ServiceOeuvrepret unService = new ServiceOeuvrepret();
+				request.setAttribute("mesOeuvreprets", unService.consulterListeOeuvreprets());
+
+			} catch (MonException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			destinationPage = "/listerOeuvres.jsp";
+		}
+			
 		if (AJOUTER_ADHERENT.equals(actionName)) {
 
 			destinationPage = "/ajouterAdherent.jsp";
@@ -83,7 +100,7 @@ public class Controleur extends HttpServlet {
 				unAdherent.setNomAdherent(request.getParameter("txtnom"));
 				unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
 				unAdherent.setVilleAdherent(request.getParameter("txtville"));
-				Service unService = new Service();
+				ServiceAdherent unService = new ServiceAdherent();
 				unService.insertAdherent(unAdherent);
 
 			} catch (MonException e) {
