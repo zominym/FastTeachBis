@@ -1,15 +1,16 @@
 <%@ include file="/includes/header.jsp" %>
 
 <body>
+	<%@ include file="/includes/pageHeader.jsp" %>
 	<P align="center"><FONT face="Arial" size="5" color="#004080"><U>
-<STRONG>Listing des Adhérents </STRONG></U></FONT><P>
+<STRONG>Listing des AdhÃ©rents </STRONG></U></FONT><P>
 
 	<TABLE BORDER="1" class="table table-bordered" >
-		<CAPTION>Tableau des Adhérents</CAPTION>
+		<CAPTION>Tableau des AdhÃ©rents</CAPTION>
 		<TR>
 			<TH>Numero</TH>
 			<TH>Nom</TH>
-			<TH>Prénom</TH>
+			<TH>PrÃ©nom</TH>
 			<TH>Ville</TH>
 		</TR>
 

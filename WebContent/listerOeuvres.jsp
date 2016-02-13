@@ -1,6 +1,7 @@
 <%@ include file="/includes/header.jsp" %>
 
 <body>
+	<%@ include file="/includes/pageHeader.jsp" %>
 	<P align="center"><FONT face="Arial" size="5" color="#004080"><U> <STRONG>Listing des Oeuvres </STRONG></U></FONT><P>
 
 	<TABLE BORDER="1" class="table table-bordered" >

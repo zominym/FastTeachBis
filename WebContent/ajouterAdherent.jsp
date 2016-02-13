@@ -4,7 +4,8 @@
 <script type="text/javascript" src="js/foncControle.js"></script>
 
 <body>
-	<H1> Ajout d'un adhérent </H1> 
+    <%@ include file="/includes/pageHeader.jsp" %>
+	<H1> Ajout d'un adhÃ©rent </H1>
 
 <DIV align="center">
 <FORM  name='identification' method="post" action="Controleur?action=insererAdherent" onsubmit="return teste()">
