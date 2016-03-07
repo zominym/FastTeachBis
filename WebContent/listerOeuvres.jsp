@@ -16,9 +16,27 @@
 			<tr>
 				<td>${item.idOeuvrepret}</td>
 				<td>${item.titreOeuvrepret}</td>
-				<td>${item.proprietaire.id}</td>
+				<td>${item.proprietaire.idProprietaire}</td>
 			</tr>
 		</c:forEach>
 	</TABLE>
+
+	<TABLE BORDER="1" class="table table-bordered" >
+		<CAPTION>Tableau des Oeuvres</CAPTION>
+		<TR>
+			<TH>Id</TH>
+			<TH>Titre</TH>
+			<TH>Id Proprietaire</TH>
+		</TR>
+
+		<c:forEach items="${mesOeuvreventes}" var="item">
+			<tr>
+				<td>${item.idOeuvrevente}</td>
+				<td>${item.titreOeuvrevente}</td>
+				<td>${item.proprietaire.idProprietaire}</td>
+			</tr>
+		</c:forEach>
+	</TABLE>
+
 
 <%@ include file="/includes/footer.jsp" %>

@@ -24,13 +24,13 @@ public class ServiceOeuvrepret {
 			DialogueBd unDialogueBd = DialogueBd.getInstance();
 			rs = DialogueBd.lecture(mysql);
 			while (index < rs.size()) {
-				// On crée un stage
+				// On crÃ©e un stage
 				Oeuvrepret uneOeuvre = new Oeuvrepret();
 				// il faut redecouper la liste pour retrouver les lignes
 				uneOeuvre.setIdOeuvrepret(Integer.parseInt(rs.get(index + 0).toString()));
 				uneOeuvre.setTitreOeuvrepret(rs.get(index + 1).toString());
 				uneOeuvre.setProprietaire(SP.consulterProprietaire(rs.get(index + 2).toString()));
-				// On incrémente tous les 3 champs
+				// On incrÃ©mente tous les 3 champs
 				index = index + 3;
 				mesOeuvreprets.add(uneOeuvre);
 			}

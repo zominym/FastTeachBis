@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.ServiceOeuvrevente;
 import metier.*;
 import dao.ServiceAdherent;
 import dao.ServiceOeuvrepret;
@@ -29,6 +30,7 @@ public class Controleur extends HttpServlet {
 	private static final String ERROR_PAGE = "/erreur.jsp";
 	
 	private static final String LISTER_OEUVREPRETS = "listerOeuvres";
+	private static final String LISTER_OEUVREVENTES = "listerOeuvres";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -77,11 +79,25 @@ public class Controleur extends HttpServlet {
 			destinationPage = "/listerAdherent.jsp";
 		}
         
-		else if (LISTER_OEUVREPRETS.equals(actionName)) {
+		if (LISTER_OEUVREPRETS.equals(actionName)) {
 			try {
 
 				ServiceOeuvrepret unService = new ServiceOeuvrepret();
 				request.setAttribute("mesOeuvreprets", unService.consulterListeOeuvreprets());
+
+			} catch (MonException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			destinationPage = "/listerOeuvres.jsp";
+		}
+
+		if (LISTER_OEUVREVENTES.equals(actionName)) {
+			try {
+
+				ServiceOeuvrevente unService = new ServiceOeuvrevente();
+				request.setAttribute("mesOeuvreventes", unService.consulterListeOeuvreventes());
 
 			} catch (MonException e) {
 				// TODO Auto-generated catch block
