@@ -11,7 +11,6 @@
 <FORM  name='identification' method="post" action="Controleur?action=updaterAdherent&idAdherent=${idAdherent}" onsubmit="return teste()">
      <P align="left"><FONT face="Arial" color="#004080"></FONT>
      
-     	<a>${idAdherent}</a>
 		<FONT face="Arial" color="#004080"> <BR>&nbsp;  &nbsp;  &nbsp; Nom de l'adherent : </FONT>
 	    <INPUT type="text" name="txtnom" value=""  id ="nom"> <BR>
         <FONT face="Arial" color="#004080">

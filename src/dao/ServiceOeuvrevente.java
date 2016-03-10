@@ -1,6 +1,7 @@
 package dao;
 
 import meserreurs.MonException;
+import metier.Adherent;
 import metier.Oeuvrevente;
 import persistance.DialogueBd;
 
@@ -41,4 +42,30 @@ public class ServiceOeuvrevente {
             throw new MonException(exc.getMessage(), "systeme");
         }
     }
+
+	public void insererOeuvrevente(Oeuvrevente uneOeuvrevente, int idAdherent) throws MonException {
+		String mysql;
+
+		DialogueBd unDialogueBd = DialogueBd.getInstance();
+
+		mysql = "insert into oeuvrevente (titre_oeuvrevente, etat_oeuvrevente, prix_oeuvrevente, id_proprietaire)"
+		+ "values ('"+ uneOeuvrevente.getTitreOeuvrevente() + "','"
+		+ "L" + "','"
+		+ uneOeuvrevente.getPrixOeuvrevente() + "','"
+		+ idAdherent + "')";
+
+		unDialogueBd.insertionBD(mysql);
+		
+	}
+
+	public void supprimerOeuvrevente(int idOeuvrevente) throws MonException {
+		String mysql;
+
+		DialogueBd unDialogueBd = DialogueBd.getInstance();
+		
+		mysql = "delete from oeuvrevente where id_oeuvrevente=" + idOeuvrevente;
+
+		unDialogueBd.insertionBD(mysql);
+		
+	}
 }

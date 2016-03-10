@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ServiceOeuvrevente;
+import dao.ServiceProprietaire;
 import metier.*;
 import dao.ServiceAdherent;
 import dao.ServiceOeuvrepret;
@@ -29,13 +30,19 @@ public class Controleur extends HttpServlet {
 	private static final String ERROR_KEY = "messageErreur";
 	private static final String ERROR_PAGE = "/erreur.jsp";
 	
-	private static final String LISTER_OEUVREPRETS = "listerOeuvres";
-	private static final String LISTER_OEUVREVENTES = "listerOeuvres";
+	private static final String LISTER_OEUVRES = "listerOeuvres";
 	
 	private static final String MODIFIER_ADHERENT = "modifierAdherent";
 	private static final String UPDATER_ADHERENT = "updaterAdherent";
 	
 	private static final String SUPPRIMER_ADHERENT = "supprimerAdherent";
+	
+	private static final String AJOUTER_OEUVRE_VENTE = "ajouterOeuvreVente";
+	private static final String INSERER_OEUVRE_VENTE = "insererOeuvreVente";
+	
+	private static final String LISTER_PROPRIETAIRES = "listerProprietaires";
+	
+	private static final String SUPPRIMER_OEUVRE_VENTE = "supprimerOeuvreVente";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -87,23 +94,20 @@ public class Controleur extends HttpServlet {
 
 			destinationPage = "/listerAdherent.jsp";
 		}
-		else if (LISTER_OEUVREPRETS.equals(actionName)) {
+		else if (LISTER_OEUVRES.equals(actionName)) {
 
-			ServiceOeuvrepret unService = new ServiceOeuvrepret();
-			request.setAttribute("mesOeuvreprets", unService.consulterListeOeuvreprets());
+			ServiceOeuvrepret unServiceP = new ServiceOeuvrepret();
+			request.setAttribute("mesOeuvreprets", unServiceP.consulterListeOeuvreprets());
 
-			destinationPage = "/listerOeuvres.jsp";
-		}
-		if (LISTER_OEUVREVENTES.equals(actionName)) {
-
-			ServiceOeuvrevente unService = new ServiceOeuvrevente();
-			request.setAttribute("mesOeuvreventes", unService.consulterListeOeuvreventes());
+			ServiceOeuvrevente unServiceV = new ServiceOeuvrevente();
+			request.setAttribute("mesOeuvreventes", unServiceV.consulterListeOeuvreventes());
 
 			destinationPage = "/listerOeuvres.jsp";
 		}
 		else if (AJOUTER_ADHERENT.equals(actionName)) {
 
 			destinationPage = "/ajouterAdherent.jsp";
+			
 		} else if (INSERER_ADHERENT.equals(actionName)) {
 			
 			Adherent unAdherent = new Adherent();
@@ -112,9 +116,8 @@ public class Controleur extends HttpServlet {
 			unAdherent.setVilleAdherent(request.getParameter("txtville"));
 			ServiceAdherent unService = new ServiceAdherent();
 			unService.insertAdherent(unAdherent);
-			request.setAttribute("mesAdherents", unService.consulterListeAdherents());
-				
-			destinationPage = "/listerAdherent.jsp";
+
+			destinationPage = "/Controleur?action=listerAdherent";
 		}
 		else if (MODIFIER_ADHERENT.equals(actionName)) {
 			
@@ -132,8 +135,7 @@ public class Controleur extends HttpServlet {
 			int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
 			unService.updaterAdherent(unAdherent, idAdherent);
 			
-			request.setAttribute("mesAdherents", unService.consulterListeAdherents());
-			destinationPage = "/listerAdherent.jsp";
+			destinationPage = "/Controleur?action=listerAdherent";
 		}
 		
 		else if (SUPPRIMER_ADHERENT.equals(actionName)) {
@@ -141,8 +143,46 @@ public class Controleur extends HttpServlet {
 			ServiceAdherent unService = new ServiceAdherent();
 			unService.supprimerAdherent(idAdherent);
 			
-			request.setAttribute("mesAdherents", unService.consulterListeAdherents());
-			destinationPage = "/listerAdherent.jsp";
+			destinationPage = "/Controleur?action=listerAdherent";
+		}
+		
+		else if (AJOUTER_OEUVRE_VENTE.equals(actionName)) {
+			
+			int idProprietaire = (int) Float.parseFloat(request.getParameter("idProprietaire"));
+			System.out.println(idProprietaire);
+			request.setAttribute("idProprietaire", idProprietaire);
+			destinationPage = "/ajouterOeuvreVente.jsp";
+			
+		} else if (INSERER_OEUVRE_VENTE.equals(actionName)) {
+			
+			String tempstring = request.getParameter("idProprietaire");
+			System.out.println(tempstring);
+			float tempfloat = Float.parseFloat(tempstring);
+			System.out.println(tempfloat);
+			int idProprietaire = (int) tempfloat;
+			Oeuvrevente uneOeuvrevente = new Oeuvrevente();
+			uneOeuvrevente.setTitreOeuvrevente(request.getParameter("txtnom"));
+			uneOeuvrevente.setPrixOeuvrevente(Float.parseFloat(request.getParameter("numprix")));
+			ServiceOeuvrevente unService = new ServiceOeuvrevente();
+			unService.insererOeuvrevente(uneOeuvrevente, idProprietaire);
+				
+			destinationPage = "/Controleur?action=listerOeuvres";
+		}
+		
+		else if (LISTER_PROPRIETAIRES.equals(actionName)) {
+
+			ServiceProprietaire unService = new ServiceProprietaire();
+			request.setAttribute("mesProprietaires", unService.consulterListeProprietaires());
+
+			destinationPage = "/listerProprietaires.jsp";
+		}
+		
+		else if (SUPPRIMER_OEUVRE_VENTE.equals(actionName)) {
+			int idOeuvrevente = Integer.parseInt(request.getParameter("idOeuvrevente"));
+			ServiceOeuvrevente unService = new ServiceOeuvrevente();
+			unService.supprimerOeuvrevente(idOeuvrevente);
+
+			destinationPage = "/Controleur?action=listerOeuvres";
 		}
 
 		else {

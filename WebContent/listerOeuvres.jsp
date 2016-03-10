@@ -29,6 +29,8 @@
 			<TH>Etat</TH>
 			<TH>Prix</TH>
 			<TH>Id Proprietaire</TH>
+			<TH>Reserver</TH>
+			<TH>Supprimer</TH>
 		</TR>
 
 		<c:forEach items="${mesOeuvreventes}" var="item">
@@ -38,6 +40,8 @@
 				<td>${item.etatOeuvrevente}</td>
 				<td>${item.prixOeuvrevente}</td>
 				<td>${item.proprietaire.idProprietaire}</td>
+				<td><a href="Controleur?action=reserverOeuvreVente&idOeuvrevente=${item.idOeuvrevente}">Reserver</a></td>
+				<td><a href="Controleur?action=supprimerOeuvreVente&idOeuvrevente=${item.idOeuvrevente}">Supprimer</a></td>
 			</tr>
 		</c:forEach>
 	</TABLE>
