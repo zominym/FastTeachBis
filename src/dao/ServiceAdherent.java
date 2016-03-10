@@ -75,4 +75,33 @@ public class ServiceAdherent {
 		}
 	}
 
+	public void updaterAdherent(Adherent unAdherent, int idAdherent)  throws MonException {
+		String mysql;
+
+		DialogueBd unDialogueBd = DialogueBd.getInstance();
+		try {
+			mysql = "update adherent set nom_adherent = '" + unAdherent.getNomAdherent() +
+					"', prenom_adherent ='" + unAdherent.getPrenomAdherent() + "', ville_adherent='"
+					+ unAdherent.getVilleAdherent() + "' where id_adherent=" + idAdherent;
+
+			unDialogueBd.insertionBD(mysql);
+		} catch (MonException e) {
+			throw e;
+		}
+	}
+
+	public void supprimerAdherent(int idAdherent) throws MonException {
+		String mysql;
+
+		DialogueBd unDialogueBd = DialogueBd.getInstance();
+		try {
+			mysql = "delete from adherent where id_adherent=" + idAdherent;
+
+			unDialogueBd.insertionBD(mysql);
+		} catch (MonException e) {
+			throw e;
+		}
+		
+	}
+
 }

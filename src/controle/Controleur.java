@@ -31,6 +31,11 @@ public class Controleur extends HttpServlet {
 	
 	private static final String LISTER_OEUVREPRETS = "listerOeuvres";
 	private static final String LISTER_OEUVREVENTES = "listerOeuvres";
+	
+	private static final String MODIFIER_ADHERENT = "modifierAdherent";
+	private static final String UPDATER_ADHERENT = "updaterAdherent";
+	
+	private static final String SUPPRIMER_ADHERENT = "supprimerAdherent";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -47,7 +52,12 @@ public class Controleur extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processusTraiteRequete(request, response);
+		try {
+			processusTraiteRequete(request, response);
+		} catch (MonException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -57,73 +67,82 @@ public class Controleur extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		processusTraiteRequete(request, response);
+		try {
+			processusTraiteRequete(request, response);
+		} catch (MonException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	protected void processusTraiteRequete(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, MonException {
 		String actionName = request.getParameter(ACTION_TYPE);
 		String destinationPage = ERROR_PAGE;
 		// execute l'action
 		if (LISTER_RADHERENT.equals(actionName)) {
-			try {
 
-				ServiceAdherent unService = new ServiceAdherent();
-				request.setAttribute("mesAdherents", unService.consulterListeAdherents());
-
-			} catch (MonException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			ServiceAdherent unService = new ServiceAdherent();
+			request.setAttribute("mesAdherents", unService.consulterListeAdherents());
 
 			destinationPage = "/listerAdherent.jsp";
 		}
-        
-		if (LISTER_OEUVREPRETS.equals(actionName)) {
-			try {
+		else if (LISTER_OEUVREPRETS.equals(actionName)) {
 
-				ServiceOeuvrepret unService = new ServiceOeuvrepret();
-				request.setAttribute("mesOeuvreprets", unService.consulterListeOeuvreprets());
-
-			} catch (MonException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			ServiceOeuvrepret unService = new ServiceOeuvrepret();
+			request.setAttribute("mesOeuvreprets", unService.consulterListeOeuvreprets());
 
 			destinationPage = "/listerOeuvres.jsp";
 		}
-
 		if (LISTER_OEUVREVENTES.equals(actionName)) {
-			try {
 
-				ServiceOeuvrevente unService = new ServiceOeuvrevente();
-				request.setAttribute("mesOeuvreventes", unService.consulterListeOeuvreventes());
-
-			} catch (MonException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			ServiceOeuvrevente unService = new ServiceOeuvrevente();
+			request.setAttribute("mesOeuvreventes", unService.consulterListeOeuvreventes());
 
 			destinationPage = "/listerOeuvres.jsp";
 		}
-			
-		if (AJOUTER_ADHERENT.equals(actionName)) {
+		else if (AJOUTER_ADHERENT.equals(actionName)) {
 
 			destinationPage = "/ajouterAdherent.jsp";
 		} else if (INSERER_ADHERENT.equals(actionName)) {
-			try {
-				Adherent unAdherent = new Adherent();
-				unAdherent.setNomAdherent(request.getParameter("txtnom"));
-				unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
-				unAdherent.setVilleAdherent(request.getParameter("txtville"));
-				ServiceAdherent unService = new ServiceAdherent();
-				unService.insertAdherent(unAdherent);
-
-			} catch (MonException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			destinationPage = "/index.jsp";
+			
+			Adherent unAdherent = new Adherent();
+			unAdherent.setNomAdherent(request.getParameter("txtnom"));
+			unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
+			unAdherent.setVilleAdherent(request.getParameter("txtville"));
+			ServiceAdherent unService = new ServiceAdherent();
+			unService.insertAdherent(unAdherent);
+			request.setAttribute("mesAdherents", unService.consulterListeAdherents());
+				
+			destinationPage = "/listerAdherent.jsp";
+		}
+		else if (MODIFIER_ADHERENT.equals(actionName)) {
+			
+			int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
+			request.setAttribute("idAdherent", idAdherent);
+			destinationPage = "/modifierAdherent.jsp";
+			
+		} else if (UPDATER_ADHERENT.equals(actionName)) {
+			
+			Adherent unAdherent = new Adherent();
+			unAdherent.setNomAdherent(request.getParameter("txtnom"));
+			unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
+			unAdherent.setVilleAdherent(request.getParameter("txtville"));
+			ServiceAdherent unService = new ServiceAdherent();
+			int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
+			unService.updaterAdherent(unAdherent, idAdherent);
+			
+			request.setAttribute("mesAdherents", unService.consulterListeAdherents());
+			destinationPage = "/listerAdherent.jsp";
+		}
+		
+		else if (SUPPRIMER_ADHERENT.equals(actionName)) {
+			int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
+			ServiceAdherent unService = new ServiceAdherent();
+			unService.supprimerAdherent(idAdherent);
+			
+			request.setAttribute("mesAdherents", unService.consulterListeAdherents());
+			destinationPage = "/listerAdherent.jsp";
 		}
 
 		else {

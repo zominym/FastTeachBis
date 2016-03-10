@@ -5,7 +5,7 @@
 	<P align="center"><FONT face="Arial" size="5" color="#004080"><U> <STRONG>Listing des Oeuvres </STRONG></U></FONT><P>
 
 	<TABLE BORDER="1" class="table table-bordered" >
-		<CAPTION>Tableau des Oeuvres</CAPTION>
+		<CAPTION>Tableau des Oeuvres en pret</CAPTION>
 		<TR>
 			<TH>Id</TH>
 			<TH>Titre</TH>
@@ -22,7 +22,7 @@
 	</TABLE>
 
 	<TABLE BORDER="1" class="table table-bordered" >
-		<CAPTION>Tableau des Oeuvres</CAPTION>
+		<CAPTION>Tableau des Oeuvres en vente</CAPTION>
 		<TR>
 			<TH>Id</TH>
 			<TH>Titre</TH>

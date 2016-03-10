@@ -12,6 +12,8 @@
 			<TH>Nom</TH>
 			<TH>Prénom</TH>
 			<TH>Ville</TH>
+			<TH>Modifier</TH>
+			<TH>Supprimer</TH>
 		</TR>
 
 		<c:forEach items="${mesAdherents}" var="item">
@@ -20,6 +22,8 @@
 				<td>${item.nomAdherent}</td>
 				<td>${item.prenomAdherent}</td>
                 <td>${item.villeAdherent}</td>
+                <td><a href="Controleur?action=modifierAdherent&idAdherent=${item.idAdherent}">Modifier</a></td>
+                <td><a href="Controleur?action=supprimerAdherent&idAdherent=${item.idAdherent}">Supprimer</a></td>
 			</tr>
 		</c:forEach>
 	</TABLE>

@@ -5,11 +5,13 @@
 
 <body>
     <%@ include file="/includes/pageHeader.jsp" %>
-	<H1> Ajout d'un adhérent </H1>
+	<H1> Modification d'un adhérent </H1>
 
 <DIV align="center">
-<FORM  name='identification' method="post" action="Controleur?action=insererAdherent" onsubmit="return teste()">
-     <P align="left"><FONT face="Arial" color="#004080"></FONT>     
+<FORM  name='identification' method="post" action="Controleur?action=updaterAdherent&idAdherent=${idAdherent}" onsubmit="return teste()">
+     <P align="left"><FONT face="Arial" color="#004080"></FONT>
+     
+     	<a>${idAdherent}</a>
 		<FONT face="Arial" color="#004080"> <BR>&nbsp;  &nbsp;  &nbsp; Nom de l'adherent : </FONT>
 	    <INPUT type="text" name="txtnom" value=""  id ="nom"> <BR>
         <FONT face="Arial" color="#004080">
@@ -20,9 +22,9 @@
         <INPUT type="text" name="txtville" id ="ville">
         <FONT face="Arial" color="#004080">	<BR></FONT><BR>
         
-          <!-- Boutons Ajouter -->
+          <!-- Boutons Modifier -->
           
-        <INPUT type="submit" name="bt"  value="Ajouter" >
+        <INPUT type="submit" name="bt"  value="Modifier" >
         <FONT face="Arial" color="#004080"></FONT>
         &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       
