@@ -26,6 +26,8 @@
 		<TR>
 			<TH>Id</TH>
 			<TH>Titre</TH>
+			<TH>Etat</TH>
+			<TH>Prix</TH>
 			<TH>Id Proprietaire</TH>
 		</TR>
 
@@ -33,6 +35,8 @@
 			<tr>
 				<td>${item.idOeuvrevente}</td>
 				<td>${item.titreOeuvrevente}</td>
+				<td>${item.etatOeuvrevente}</td>
+				<td>${item.prixOeuvrevente}</td>
 				<td>${item.proprietaire.idProprietaire}</td>
 			</tr>
 		</c:forEach>

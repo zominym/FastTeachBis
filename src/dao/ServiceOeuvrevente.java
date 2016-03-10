@@ -9,7 +9,8 @@ import java.util.List;
 
 public class ServiceOeuvrevente {
     public List<Oeuvrevente> consulterListeOeuvreventes() throws MonException {
-        String mysql = "select * from Oeuvrevente";
+        String mysql = "select * from Oeuvrevente;";
+        //System.out.println(mysql);
         return consulterListeOeuvreventes(mysql);
     }
 
@@ -27,9 +28,11 @@ public class ServiceOeuvrevente {
                 // il faut redecouper la liste pour retrouver les lignes
                 uneOeuvre.setIdOeuvrevente(Integer.parseInt(rs.get(index + 0).toString()));
                 uneOeuvre.setTitreOeuvrevente(rs.get(index + 1).toString());
-                uneOeuvre.setProprietaire(SP.consulterProprietaire(rs.get(index + 2).toString()));
+                uneOeuvre.setEtatOeuvrevente(rs.get(index + 2).toString());
+                uneOeuvre.setPrixOeuvrevente(Float.parseFloat(rs.get(index + 3).toString()));
+                uneOeuvre.setProprietaire(SP.consulterProprietaire(rs.get(index + 4).toString()));
                 // On incrémente tous les 3 champs
-                index = index + 3;
+                index = index + 5;
                 mesOeuvreventes.add(uneOeuvre);
             }
 

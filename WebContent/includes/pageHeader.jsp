@@ -15,7 +15,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Accueil</a></li>
+                    <li class="active"><a href="/ProjetOeuvres">Accueil</a></li>
                     <li><a href="Controleur?action=ajouterAdherent">Ajout adhérents</a></li>
                     <li><a href="Controleur?action=listerAdherent">Lister les adhérents</a></li>
                     <li><a href="Controleur?action=listerOeuvres">Lister les oeuvres</a></li>
