@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ServiceOeuvrevente {
     public List<Oeuvrevente> consulterListeOeuvreventes() throws MonException {
-        String mysql = "select * from Oeuvrevente;";
+        String mysql = "select * from oeuvrevente;";
         //System.out.println(mysql);
         return consulterListeOeuvreventes(mysql);
     }

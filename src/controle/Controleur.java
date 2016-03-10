@@ -102,6 +102,9 @@ public class Controleur extends HttpServlet {
 			ServiceOeuvrevente unServiceV = new ServiceOeuvrevente();
 			request.setAttribute("mesOeuvreventes", unServiceV.consulterListeOeuvreventes());
 
+			ServiceAdherent unService = new ServiceAdherent();
+			request.setAttribute("mesAdherents", unService.consulterListeAdherents());
+
 			destinationPage = "/listerOeuvres.jsp";
 		}
 		else if (AJOUTER_ADHERENT.equals(actionName)) {

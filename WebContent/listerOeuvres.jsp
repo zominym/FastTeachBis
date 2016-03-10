@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ include file="/includes/header.jsp" %>
 
 <body>
@@ -40,7 +41,18 @@
 				<td>${item.etatOeuvrevente}</td>
 				<td>${item.prixOeuvrevente}</td>
 				<td>${item.proprietaire.idProprietaire}</td>
-				<td><a href="Controleur?action=reserverOeuvreVente&idOeuvrevente=${item.idOeuvrevente}">Reserver</a></td>
+				<td>
+                    <form action="Controleur?" method="get">
+                    <input type="hidden" name="action" value="reserverOeuvreVente"/>
+                    <input type="hidden" name="idOeuvrevente" value="${item.idOeuvrevente}"/>
+                    <select name="idAdherent" id="id_resa">
+                        <c:forEach items="${mesAdherents}" var="ad">
+                            <option value="${ad.idAdherent}">${ad.nomAdherent}</option>
+                        </c:forEach>
+                    </select>
+                    <input type="submit">
+                    </form>
+				</td>
 				<td><a href="Controleur?action=supprimerOeuvreVente&idOeuvrevente=${item.idOeuvrevente}">Supprimer</a></td>
 			</tr>
 		</c:forEach>
