@@ -1,7 +1,6 @@
 package dao;
 
 import meserreurs.MonException;
-import metier.Adherent;
 import metier.Oeuvrevente;
 import persistance.DialogueBd;
 
@@ -13,6 +12,16 @@ public class ServiceOeuvrevente {
         String mysql = "select * from oeuvrevente;";
         //System.out.println(mysql);
         return consulterListeOeuvreventes(mysql);
+    }
+
+    public Oeuvrevente getOeuvrevente(int idOeuvrevente) throws MonException {
+
+        List<Oeuvrevente> list = consulterListeOeuvreventes();
+        for (Oeuvrevente o: list) {
+            if(o.getIdOeuvrevente() == idOeuvrevente)
+                return o;
+        }
+        return null;
     }
 
     private List<Oeuvrevente> consulterListeOeuvreventes(String mysql) throws MonException {
@@ -68,4 +77,18 @@ public class ServiceOeuvrevente {
 		unDialogueBd.insertionBD(mysql);
 		
 	}
+
+    public void reserverOeuvrevente(int idOeuvrevente, int idAdherent) throws MonException {
+        String mysql;
+
+        DialogueBd unDialogueBd = DialogueBd.getInstance();
+
+        mysql = "update oeuvrevente set etat_oeuvrevente='R' where id_oeuvrevente="+idOeuvrevente;
+
+        unDialogueBd.insertionBD(mysql);
+
+        mysql = "insert into reservation values("+idOeuvrevente+","+idAdherent+", DATE(NOW()),'confirmee')";
+
+        unDialogueBd.insertionBD(mysql);
+    }
 }

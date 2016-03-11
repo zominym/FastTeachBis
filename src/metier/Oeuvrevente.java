@@ -69,4 +69,10 @@ public class Oeuvrevente implements Serializable {
 	public void setProprietaire(Proprietaire proprietaire) {
 		this.proprietaire = proprietaire;
 	}
+
+	public boolean isReserved () {
+		if(this.etatOeuvrevente == "R")
+			return true;
+		return false;
+	}
 }

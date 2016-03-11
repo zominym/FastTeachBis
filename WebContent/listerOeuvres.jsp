@@ -42,16 +42,18 @@
 				<td>${item.prixOeuvrevente}</td>
 				<td>${item.proprietaire.idProprietaire}</td>
 				<td>
-                    <form action="Controleur?" method="get">
-                    <input type="hidden" name="action" value="reserverOeuvreVente"/>
-                    <input type="hidden" name="idOeuvrevente" value="${item.idOeuvrevente}"/>
-                    <select name="idAdherent" id="id_resa">
-                        <c:forEach items="${mesAdherents}" var="ad">
-                            <option value="${ad.idAdherent}">${ad.nomAdherent}</option>
-                        </c:forEach>
-                    </select>
-                    <input type="submit">
-                    </form>
+					<c:if test="${item.etatOeuvrevente == 'L'}">
+						<form action="Controleur?" method="get">
+						<input type="hidden" name="action" value="reserverOeuvreVente"/>
+						<input type="hidden" name="idOeuvrevente" value="${item.idOeuvrevente}"/>
+						<select name="idAdherent" id="id_resa">
+							<c:forEach items="${mesAdherents}" var="ad">
+								<option value="${ad.idAdherent}">${ad.nomAdherent}</option>
+							</c:forEach>
+						</select>
+						<input type="submit" value="Réserver">
+						</form>
+					</c:if>
 				</td>
 				<td><a href="Controleur?action=supprimerOeuvreVente&idOeuvrevente=${item.idOeuvrevente}">Supprimer</a></td>
 			</tr>

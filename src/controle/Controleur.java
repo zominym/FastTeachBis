@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.ServiceOeuvrevente;
-import dao.ServiceProprietaire;
+import dao.*;
 import metier.*;
-import dao.ServiceAdherent;
-import dao.ServiceOeuvrepret;
 import meserreurs.*;
 
 /**
@@ -43,6 +40,11 @@ public class Controleur extends HttpServlet {
 	private static final String LISTER_PROPRIETAIRES = "listerProprietaires";
 	
 	private static final String SUPPRIMER_OEUVRE_VENTE = "supprimerOeuvreVente";
+
+    private static final String RESERVER_OEUVRE_VENTE = "reserverOeuvreVente";
+    private static final String LISTER_RESERVATIONS = "listerReservations";
+
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -187,6 +189,26 @@ public class Controleur extends HttpServlet {
 
 			destinationPage = "/Controleur?action=listerOeuvres";
 		}
+
+        else if (RESERVER_OEUVRE_VENTE.equals(actionName)) {
+            int idOeuvrevente = Integer.parseInt(request.getParameter("idOeuvrevente"));
+            int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
+            ServiceOeuvrevente unService = new ServiceOeuvrevente();
+
+            if(!unService.getOeuvrevente(idOeuvrevente).isReserved()){
+                unService.reserverOeuvrevente(idOeuvrevente,idAdherent);
+            }
+
+            destinationPage = "/Controleur?action=listerOeuvres";
+        }
+
+        else if (LISTER_RESERVATIONS.equals(actionName)) {
+
+            ServiceReservation unService = new ServiceReservation();
+            request.setAttribute("mesReservations", unService.consulterListeReservations());
+
+            destinationPage = "/listerReservations.jsp";
+        }
 
 		else {
 			String messageErreur = "[" + actionName + "] n'est pas une action valide.";
