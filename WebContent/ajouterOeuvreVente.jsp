@@ -1,32 +1,34 @@
-<%@ include file="/includes/header.jsp" %>
-
-<SCRIPT language="Javascript" type="text/javascript">
-<script type="text/javascript" src="js/foncControle.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ include file="/includes/head.jsp" %>
 
 <body>
-    <%@ include file="/includes/pageHeader.jsp" %>
-	<H1> Ajout d'une Oeuvre Vente </H1>
+    <%@ include file="/includes/header.jsp" %>
+    <div class="container marketing">
+        <div class="mp-title">
+            <h1> Ajout d'une oeuvre pour la vente</h1>
+        </div>
 
-<DIV align="center">
-<FORM  name='identification' method="post" action="Controleur?action=insererOeuvreVente&idProprietaire=${idProprietaire}" onsubmit="return teste()">
-     <P align="left"><FONT face="Arial" color="#004080"></FONT>
-       
-		<FONT face="Arial" color="#004080"> <BR>&nbsp;  &nbsp;  &nbsp; Nom de l'oeuvre : </FONT>
-	    <INPUT type="text" name="txtnom" value=""  id ="nom"> <BR>
-        <FONT face="Arial" color="#004080"> <BR></FONT><BR>
-		
-		     <FONT face="Arial" color="#004080"> <BR>&nbsp;  &nbsp;  &nbsp; Prix de l'oeuvre :</FONT>
-        <INPUT type="number" name="numprix" id ="ville">
-        <FONT face="Arial" color="#004080">	<BR></FONT><BR>
-        
-          <!-- Boutons Ajouter -->
-          
-        <INPUT type="submit" name="bt"  value="Ajouter" >
-        <FONT face="Arial" color="#004080"></FONT>
-        &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      
-</P></FORM>
-</DIV>
-<BR>
+        <form class="mp-form" name='identification' method="post" action="Controleur?action=insererOeuvreVente&idProprietaire=${idProprietaire}" onsubmit="return test()">
+            <div class="mp-input">
+                <p>Nom de l'oeuvre : </p>
+                <input class="form-control" type="text" name="txtnom" value=""  id ="nom">
+            </div>
+
+            <div class="mp-input">
+                <p>Prix de l'oeuvre :</p>
+                <div class="input-group">
+                    <input class="form-control" type="number" name="numprix" id ="ville">
+                    <div class="input-group-addon">€</div>
+                </div>
+
+            </div>
+
+            <div class="mp-input">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Ajouter</button>
+            </div>
+
+        </form>
+        <BR>
+    </div>
 
 <%@ include file="/includes/footer.jsp" %>

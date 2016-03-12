@@ -1,27 +1,30 @@
-<%@ include file="/includes/header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ include file="/includes/head.jsp" %>
 
 <body>
-	<%@ include file="/includes/pageHeader.jsp" %>
-	<P align="center"><FONT face="Arial" size="5" color="#004080"><U>
-<STRONG>Listing des Adhérents </STRONG></U></FONT><P>
+	<%@ include file="/includes/header.jsp" %>
 
-	<TABLE BORDER="1" class="table table-bordered" >
-		<CAPTION>Tableau des Proprietaires</CAPTION>
-		<TR>
-			<TH>Numero</TH>
-			<TH>Nom</TH>
-			<TH>Prénom</TH>
-			<TH>Ajouter Oeuvre Vente</TH>
-		</TR>
+	<div class="container marketing">
+		<div class="mp-title">
+			<h1>Liste des propriétaires</h1>
+		</div>
 
-		<c:forEach items="${mesProprietaires}" var="item">
+		<table border="1" class="table table-bordered table-hover" >
+			<tr>
+				<th>Numero</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th class="mp-th-center">Ajouter une oeuvre</th>
+			</tr>
+
+			<c:forEach items="${mesProprietaires}" var="item">
 			<tr>
 				<td>${item.idProprietaire}</td>
 				<td>${item.nomProprietaire}</td>
 				<td>${item.prenomProprietaire}</td>
-                <td><a href="Controleur?action=ajouterOeuvreVente&idProprietaire=${item.idProprietaire}">Ajouter Oeuvre Vente</a></td>
+				<td class="action"><a href="Controleur?action=ajouterOeuvreVente&idProprietaire=${item.idProprietaire}"><span class="fa fa-plus-square"></span></a></td>
 			</tr>
-		</c:forEach>
-	</TABLE>
-
+			</c:forEach>
+		</table>
+	</div>
 <%@ include file="/includes/footer.jsp" %>
