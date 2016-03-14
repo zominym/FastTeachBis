@@ -33,5 +33,6 @@
         </div>
     </div>
 
+    <script src="js/navActivate.js" data-navselector="mp-nav-addAdh"></script>
 
 <%@ include file="/includes/footer.jsp" %>

@@ -68,5 +68,6 @@
 			</c:forEach>
 		</table>
 	</div>
+	<script src="/js/navActivate.js" data-navselector="mp-nav-listO"></script>
 
 <%@ include file="/includes/footer.jsp" %>

@@ -13,10 +13,10 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="Controleur?action=ajouterAdherent">Ajout adhérents</a></li>
-                    <li><a href="Controleur?action=listerAdherent">Lister les adhérents</a></li>
-                    <li><a href="Controleur?action=listerOeuvres">Lister les oeuvres</a></li>
-                    <li><a href="Controleur?action=listerProprietaires">Lister les proprietaires</a></li>
+                    <li class="mp-nav-addAdh"> <a href="Controleur?action=ajouterAdherent">Ajout adhérents</a></li>
+                    <li class="mp-nav-listAdh"><a href="Controleur?action=listerAdherent">Lister les adhérents</a></li>
+                    <li class="mp-nav-listO">  <a href="Controleur?action=listerOeuvres">Lister les oeuvres</a></li>
+                    <li class="mp-nav-listOw"> <a href="Controleur?action=listerProprietaires">Lister les proprietaires</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

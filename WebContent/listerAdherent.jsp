@@ -32,4 +32,6 @@
 		</table>
 	</div>
 
+	<script src="/js/navActivate.js" data-navselector="mp-nav-listAdh"></script>
+
 <%@ include file="/includes/footer.jsp" %>
