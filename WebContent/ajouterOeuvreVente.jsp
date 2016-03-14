@@ -11,13 +11,13 @@
         <form class="mp-form" name='identification' method="post" action="Controleur?action=insererOeuvreVente&idProprietaire=${idProprietaire}" onsubmit="return test()">
             <div class="mp-input">
                 <p>Nom de l'oeuvre : </p>
-                <input class="form-control" type="text" name="txtnom" value=""  id ="nom">
+                <input class="form-control" type="text" name="txtnom" value=""  id ="nom" required autofocus>
             </div>
 
             <div class="mp-input">
                 <p>Prix de l'oeuvre :</p>
                 <div class="input-group">
-                    <input class="form-control" type="number" name="numprix" id ="ville">
+                    <input class="form-control" type="number" name="numprix" id ="ville" required>
                     <div class="input-group-addon">€</div>
                 </div>
 

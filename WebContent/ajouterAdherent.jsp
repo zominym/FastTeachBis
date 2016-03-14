@@ -14,15 +14,15 @@
             <form class="mp-form" name='identification' method="post" action="Controleur?action=insererAdherent" onsubmit="return test()">
                 <div class="mp-input">
                     <p> Nom de l'adherent :</p>
-                    <input class="form-control" type="text" name="txtnom" value="" id ="nom">
+                    <input class="form-control" type="text" name="txtnom" value="" id ="nom" required autofocus>
                 </div>
                 <div class="mp-input">
                     <p>Prenom de l'adherent :</p>
-                    <input class="form-control" type="text" name="txtprenom"  id ="prenom">
+                    <input class="form-control" type="text" name="txtprenom"  id ="prenom" required>
                 </div>
                 <div class="mp-input">
                     <p>Ville de l'adherent :</p>
-                    <input class="form-control" type="text" name="txtville" id ="ville">
+                    <input class="form-control" type="text" name="txtville" id ="ville" required>
                 </div>
                 <br/>
                 <!-- Boutons Ajouter -->
