@@ -8,7 +8,7 @@
             <h1> Ajout d'une oeuvre pour la vente</h1>
         </div>
 
-        <form class="mp-form" name='identification' method="post" action="insererOeuvreVente&idProprietaire=${idProprietaire}" onsubmit="return test()">
+        <form class="mp-form" name='identification' method="post" action="insererOeuvreVente?idProprietaire=${idProprietaire}" onsubmit="return test()">
             <div class="mp-input">
                 <p>Nom de l'oeuvre : </p>
                 <input class="form-control" type="text" name="txtnom" value=""  id ="nom" required autofocus>

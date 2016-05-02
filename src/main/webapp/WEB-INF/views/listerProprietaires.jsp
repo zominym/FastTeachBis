@@ -22,7 +22,7 @@
 				<td>${item.idProprietaire}</td>
 				<td>${item.nomProprietaire}</td>
 				<td>${item.prenomProprietaire}</td>
-				<td class="action"><a href="ajouterOeuvreVente&idProprietaire=${item.idProprietaire}"><span class="fa fa-plus-square"></span></a></td>
+				<td class="action"><a href="ajouterOeuvreVente?idProprietaire=${item.idProprietaire}"><span class="fa fa-plus-square"></span></a></td>
 			</tr>
 			</c:forEach>
 		</table>

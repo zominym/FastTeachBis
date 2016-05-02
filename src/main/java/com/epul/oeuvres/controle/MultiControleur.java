@@ -155,9 +155,9 @@ public class MultiControleur extends MultiActionController {
 	public ModelAndView supprimerAdherent (HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String destinationPage;
 		try {
-			int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
-			ServiceAdherent unService = new ServiceAdherent();
-			unService.supprimerAdherent(idAdherent);
+			//int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
+			//ServiceAdherent unService = new ServiceAdherent();
+			//unService.supprimerAdherent(idAdherent);
 
 			destinationPage = "listerAdherent";
 		} catch (Exception e) {

@@ -10,7 +10,7 @@
             <h1> Modification d'un adhérent </h1>
         </div>
         <div>
-            <form class="mp-form" name='identification' method="post" action="updaterAdherent&idAdherent=${idAdherent}" onsubmit="return test()">
+            <form class="mp-form" name='identification' method="post" action="updaterAdherent?idAdherent=${idAdherent}" onsubmit="return test()">
                 <div class="mp-input">
                     <p> Nom de l'adherent :</p>
                     <input class="form-control" type="text" name="txtnom" value="" id ="nom" required autofocus>
