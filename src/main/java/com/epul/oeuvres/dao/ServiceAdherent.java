@@ -6,7 +6,9 @@ import java.util.*;
 import com.epul.oeuvres.metier.*;
 import com.epul.oeuvres.persistance.*;
 
-public class ServiceAdherent {
+import javax.persistence.EntityTransaction;
+
+public class ServiceAdherent extends EntityService {
 
 	// Mise � jour des caract�ristiques d'un adh�rent
 	// Le booleen indique s'il s'agit d'un nouvel adh�rent, auquel cas on fait
@@ -99,16 +101,52 @@ public class ServiceAdherent {
 		}
 	}
 
-	public void supprimerAdherent(int idAdherent) throws MonException {
-		String mysql;
-
-		DialogueBd unDialogueBd = DialogueBd.getInstance();
+	public Adherent consulterAdherent(int numero) throws MonException {
+		Adherent unAd = null;
 		try {
-			mysql = "delete from adherent where id_adherent=" + idAdherent;
 
-			unDialogueBd.insertionBD(mysql);
-		} catch (MonException e) {
-			throw e;
+			EntityTransaction transac = startTransaction();
+			transac.begin();
+			unAd = entitymanager.find(Adherent.class, numero);
+			entitymanager.close();
+			emf.close();
+
+		} catch (Exception e) {
+			new MonException("Erreur de lecture", e.getMessage());
+		}
+		return unAd;
+
+	public void supprimerAdherent(int idAdherent) throws MonException {
+//		String mysql;
+//
+//		DialogueBd unDialogueBd = DialogueBd.getInstance();
+//		try {
+//			mysql = "delete from adherent where id_adherent=" + idAdherent;
+//
+//			unDialogueBd.insertionBD(mysql);
+//		} catch (MonException e) {
+//			throw e;
+//		}
+
+		// Initialize vars
+		EntityTransaction transaction = this.entityManager.getTransaction();
+
+		// Delete the adherent
+		try
+		{
+			transaction.begin();
+			this.entityManager.remove(adherent);
+			this.entityManager.flush();
+			transaction.commit();
+		}
+		catch(Exception ex)
+		{
+			transaction.rollback();
+
+			throw new RepositoryException(
+					ex,
+					"Impossible de supprimer l'adhérent."
+			);
 		}
 		
 	}
