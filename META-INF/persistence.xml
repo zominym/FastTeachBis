@@ -2,12 +2,12 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="POeuvre" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <class>com.polytech.multimedia_library.entities.Adherent</class>
-    <class>com.polytech.multimedia_library.entities.Emprunt</class>
-    <class>com.polytech.multimedia_library.entities.Reservation</class>
-    <class>com.polytech.multimedia_library.entities.Oeuvrevente</class>
-    <class>com.polytech.multimedia_library.entities.Oeuvrepret</class>
-    <class>com.polytech.multimedia_library.entities.Proprietaire</class>
+    <class>com.epul.oeuvres.entities.Adherent</class>
+    <class>com.epul.oeuvres.entities.Emprunt</class>
+    <class>com.epul.oeuvres.entities.Reservation</class>
+    <class>com.epul.oeuvres.entities.Oeuvrevente</class>
+    <class>com.epul.oeuvres.entities.Oeuvrepret</class>
+    <class>com.epul.oeuvres.entities.Proprietaire</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
