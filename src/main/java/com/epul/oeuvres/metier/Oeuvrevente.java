@@ -62,9 +62,9 @@ public class Oeuvrevente implements Serializable {
 		this.titreOeuvrevente = titreOeuvrevente;
 	}
 
-	public Proprietaire getProprietaire() {
+	/*public Proprietaire getProprietaire() {
 		return this.proprietaire;
-	}
+	}*/
 
 	public void setProprietaire(Proprietaire proprietaire) {
 		this.proprietaire = proprietaire;

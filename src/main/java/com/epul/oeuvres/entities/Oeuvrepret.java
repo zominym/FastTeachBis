@@ -19,9 +19,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
- */
 @Entity
 @Table(name = "oeuvrepret")
 @XmlRootElement
@@ -131,6 +128,6 @@ public class Oeuvrepret implements Serializable
     @Override
     public String toString()
     {
-        return "com.polytech.multimedia_library.Oeuvrepret[ idOeuvrepret=" + idOeuvrepret + " ]";
+        return "com.epul.oeuvres.entities.Oeuvrepret[ idOeuvrepret=" + idOeuvrepret + " ]";
     }
 }

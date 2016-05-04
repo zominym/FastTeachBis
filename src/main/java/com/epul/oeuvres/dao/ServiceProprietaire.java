@@ -1,10 +1,13 @@
 package com.epul.oeuvres.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.epul.oeuvres.meserreurs.MonException;
 import com.epul.oeuvres.metier.Proprietaire;
+import com.epul.oeuvres.persistance.DialogueBd;
 
 import javax.persistence.EntityTransaction;
-import java.util.List;
 
 public class ServiceProprietaire extends EntityService {
 
@@ -37,7 +40,7 @@ public class ServiceProprietaire extends EntityService {
 
 			EntityTransaction transac = startTransaction();
 			transac.begin();
-			mesProprietaires = (List<Proprietaire>)  entitymanager.createQuery("select * from proprietaire").getResultList();
+			mesProprietaires = (List<Proprietaire>)  entitymanager.createQuery("select p from proprietaire p").getResultList();
 			entitymanager.close();
 		}  catch (RuntimeException e){
 			new MonException("Erreur de lecture ", e.getMessage());

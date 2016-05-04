@@ -146,6 +146,6 @@ public class Emprunt implements Serializable
     @Override
     public String toString()
     {
-        return "com.polytech.multimedia_library.Emprunt[ idEmprunt=" + idEmprunt + " ]";
+        return "com.epul.oeuvres.entities.Emprunt[ idEmprunt=" + idEmprunt + " ]";
     }
 }
