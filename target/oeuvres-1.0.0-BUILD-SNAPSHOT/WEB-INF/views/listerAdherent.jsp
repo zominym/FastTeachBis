@@ -26,6 +26,7 @@
 				<td>${item.prenomAdherent}</td>
 				<td>${item.villeAdherent}</td>
 				<td class="action"><a href="modifierAdherent?idAdherent=${item.idAdherent}"><span class="fa fa-pencil-square-o"></span></a></td>
+
 				<td class="action"><a href="supprimerAdherent?idAdherent=${item.idAdherent}"><span class="fa fa-eraser"></span></a></td>
 			</tr>
 			</c:forEach>

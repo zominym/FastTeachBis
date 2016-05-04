@@ -37,7 +37,7 @@ public class ServiceProprietaire extends EntityService {
 
 			EntityTransaction transac = startTransaction();
 			transac.begin();
-			mesProprietaires = (List<Proprietaire>)  entitymanager.createQuery("select * from proprietaire").getResultList();
+			mesProprietaires = (List<Proprietaire>)  entitymanager.createQuery("SELECT p FROM Proprietaire p ORDER BY p.nomProprietaire").getResultList();
 			entitymanager.close();
 		}  catch (RuntimeException e){
 			new MonException("Erreur de lecture ", e.getMessage());
