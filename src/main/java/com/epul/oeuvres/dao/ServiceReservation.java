@@ -2,24 +2,33 @@ package com.epul.oeuvres.dao;
 
 import com.epul.oeuvres.meserreurs.MonException;
 import com.epul.oeuvres.metier.Reservation;
-import com.epul.oeuvres.persistance.DialogueBd;
 
-import java.sql.Date;
-import java.util.ArrayList;
+import javax.persistence.EntityTransaction;
 import java.util.List;
 
 /**
  * Created by vil on 11/03/16.
  */
-public class ServiceReservation {
+public class ServiceReservation extends EntityService {
 
-    public List<Reservation> consulterListeReservations() throws MonException {
-        String mysql = "select * from reservation;";
-        //System.out.println(mysql);
-        return consulterListeReservations(mysql);
+    public List<Reservation> consulterListeReservations() throws MonException {{
+        List<Reservation> mesReservation = null;
+        try {
+            EntityTransaction transac = startTransaction();
+                transac.begin();
+                mesReservation = (List<Reservation>)  entitymanager.createQuery("select * from reservation").getResultList();
+                entitymanager.close();
+            }  catch (RuntimeException e){
+                new MonException("Erreur de lecture ", e.getMessage());
+            }
+            return mesReservation;
+        }
+        /*String mysql = "select * from reservation;";
+        System.out.println(mysql);
+        return consulterListeReservations(mysql);*/
     }
 
-    private List<Reservation> consulterListeReservations(String mysql) throws MonException {
+    /*private List<Reservation> consulterListeReservations(String mysql) throws MonException {
         List<Object> rs;
         List<Reservation> mesReservations = new ArrayList<Reservation>();
         ServiceOeuvrevente serveVente = new ServiceOeuvrevente();
@@ -44,5 +53,5 @@ public class ServiceReservation {
         } catch (Exception exc) {
             throw new MonException(exc.getMessage(), "systeme");
         }
-    }
+    }*/
 }

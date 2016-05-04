@@ -4,27 +4,55 @@ import com.epul.oeuvres.meserreurs.MonException;
 import com.epul.oeuvres.metier.Oeuvrevente;
 import com.epul.oeuvres.persistance.DialogueBd;
 
+import javax.persistence.EntityTransaction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceOeuvrevente {
+public class ServiceOeuvrevente extends EntityService{
     public List<Oeuvrevente> consulterListeOeuvreventes() throws MonException {
-        String mysql = "select * from oeuvrevente;";
+
+        List<Oeuvrevente> mesOeuvres= null;
+        try {
+
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            mesOeuvres = (List<Oeuvrevente>)  entitymanager.createQuery("SELECT a FROM Adherent a ORDER BY a.nomAdherent").getResultList();
+            entitymanager.close();
+        }  catch (RuntimeException e){
+            new MonException("Erreur de lecture ", e.getMessage());
+        }
+        return mesOeuvres;
+
+        /*String mysql = "select * from oeuvrevente;";
         //System.out.println(mysql);
-        return consulterListeOeuvreventes(mysql);
+        return consulterListeOeuvreventes(mysql);*/
     }
 
     public Oeuvrevente getOeuvrevente(int idOeuvrevente) throws MonException {
 
-        List<Oeuvrevente> list = consulterListeOeuvreventes();
+        Oeuvrevente uneOeuvre = null;
+        try {
+
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            uneOeuvre = entitymanager.find(Oeuvrevente.class, idOeuvrevente);
+            entitymanager.close();
+            emf.close();
+
+        } catch (Exception e) {
+            new MonException("Erreur de lecture", e.getMessage());
+        }
+        return uneOeuvre;
+
+        /*List<Oeuvrevente> list = consulterListeOeuvreventes();
         for (Oeuvrevente o: list) {
             if(o.getIdOeuvrevente() == idOeuvrevente)
                 return o;
         }
-        return null;
+        return null;*/
     }
 
-    private List<Oeuvrevente> consulterListeOeuvreventes(String mysql) throws MonException {
+    /*private List<Oeuvrevente> consulterListeOeuvreventes(String mysql) throws MonException {
         List<Object> rs;
         List<Oeuvrevente> mesOeuvreventes = new ArrayList<Oeuvrevente>();
         int index = 0;
@@ -50,10 +78,24 @@ public class ServiceOeuvrevente {
         } catch (Exception exc) {
             throw new MonException(exc.getMessage(), "systeme");
         }
-    }
+    }*/
 
 	public void insererOeuvrevente(Oeuvrevente uneOeuvrevente, int idAdherent) throws MonException {
-		String mysql;
+        try {
+
+            EntityTransaction transac = startTransaction();
+            if (!entitymanager.contains(uneOeuvrevente)) {
+                transac.begin();
+                entitymanager.persist(uneOeuvrevente);
+                entitymanager.flush();
+                transac.commit();
+            }
+            entitymanager.close();
+        } catch (Exception e) {
+            new MonException("Erreur d'insertion", e.getMessage());
+        }
+
+		/*String mysql;
 
 		DialogueBd unDialogueBd = DialogueBd.getInstance();
 
@@ -63,23 +105,42 @@ public class ServiceOeuvrevente {
 		+ uneOeuvrevente.getPrixOeuvrevente() + "','"
 		+ idAdherent + "')";
 
-		unDialogueBd.insertionBD(mysql);
+		unDialogueBd.insertionBD(mysql);*/
 		
 	}
 
 	public void supprimerOeuvrevente(int idOeuvrevente) throws MonException {
-		String mysql;
+
+        try {
+            Oeuvrevente toRemove = getOeuvrevente(idOeuvrevente);
+            entitymanager.remove(toRemove);
+        } catch (Exception e){
+            new MonException("Erreur de suppression", e.getMessage());
+        }
+
+		/*String mysql;
 
 		DialogueBd unDialogueBd = DialogueBd.getInstance();
 		
 		mysql = "delete from oeuvrevente where id_oeuvrevente=" + idOeuvrevente;
 
-		unDialogueBd.insertionBD(mysql);
-		
+		unDialogueBd.insertionBD(mysql);*/
 	}
 
     public void reserverOeuvrevente(int idOeuvrevente, int idAdherent) throws MonException {
-        String mysql;
+
+        try {
+
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            entitymanager.createQuery("update oeuvrevente set etat_oeuvrevente='R' where id_oeuvrevente="+idOeuvrevente);
+            entitymanager.createQuery("insert into reservation values("+idOeuvrevente+","+idAdherent+", DATE(NOW()),'confirmee'");
+            entitymanager.close();
+        }  catch (RuntimeException e){
+            new MonException("Erreur de lecture ", e.getMessage());
+        }
+
+        /*String mysql;
 
         DialogueBd unDialogueBd = DialogueBd.getInstance();
 
@@ -89,6 +150,6 @@ public class ServiceOeuvrevente {
 
         mysql = "insert into reservation values("+idOeuvrevente+","+idAdherent+", DATE(NOW()),'confirmee')";
 
-        unDialogueBd.insertionBD(mysql);
+        unDialogueBd.insertionBD(mysql);*/
     }
 }

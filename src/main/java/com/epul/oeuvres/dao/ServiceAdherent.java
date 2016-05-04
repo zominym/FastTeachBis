@@ -115,6 +115,7 @@ public class ServiceAdherent extends EntityService {
 			new MonException("Erreur de lecture", e.getMessage());
 		}
 		return unAd;
+	}
 
 	public void supprimerAdherent(int idAdherent) throws MonException {
 //		String mysql;

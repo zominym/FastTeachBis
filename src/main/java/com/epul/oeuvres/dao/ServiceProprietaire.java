@@ -1,31 +1,54 @@
 package com.epul.oeuvres.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.epul.oeuvres.meserreurs.MonException;
 import com.epul.oeuvres.metier.Proprietaire;
-import com.epul.oeuvres.persistance.DialogueBd;
 
-public class ServiceProprietaire {
+import javax.persistence.EntityTransaction;
+import java.util.List;
+
+public class ServiceProprietaire extends EntityService {
 
 	public Proprietaire consulterProprietaire(String id) throws MonException {
-		String mysql = "select * from proprietaire where id_proprietaire=" + id;
-		List<Proprietaire> mesProprietaires = consulterListeProprietaires(mysql);
-		if (mesProprietaires.isEmpty())
-			return null;
-		else {
-			return mesProprietaires.get(0);
+		Proprietaire unProp = null;
+		try {
+
+			EntityTransaction transac = startTransaction();
+			transac.begin();
+			unProp = entitymanager.find(Proprietaire.class, id);
+			entitymanager.close();
+			emf.close();
+
+		} catch (Exception e) {
+			new MonException("Erreur de lecture", e.getMessage());
 		}
+		return unProp;
+//		String mysql = "select * from proprietaire where id_proprietaire=" + id;
+//		List<Proprietaire> mesProprietaires = consulterListeProprietaires(mysql);
+//		if (mesProprietaires.isEmpty())
+//			return null;
+//		else {
+//			return mesProprietaires.get(0);
+//		}
 	}
 	
 	public List<Proprietaire> consulterListeProprietaires() throws MonException {
-		String mysql = "select * from proprietaire";
-		return consulterListeProprietaires(mysql);
+		List<Proprietaire> mesProprietaires =  null;
+		try {
+
+			EntityTransaction transac = startTransaction();
+			transac.begin();
+			mesProprietaires = (List<Proprietaire>)  entitymanager.createQuery("select * from proprietaire").getResultList();
+			entitymanager.close();
+		}  catch (RuntimeException e){
+			new MonException("Erreur de lecture ", e.getMessage());
+		}
+		return mesProprietaires;
+		/*String mysql = "select * from proprietaire";
+		return consulterListeProprietaires(mysql);*/
 	}
 	
 	
-	private List<Proprietaire> consulterListeProprietaires(String mysql) throws MonException {
+	/*private List<Proprietaire> consulterListeProprietaires(String mysql) throws MonException {
 		List<Object> rs;
 		List<Proprietaire> mesProprietaires = new ArrayList<Proprietaire>();
 		int index = 0;
@@ -48,6 +71,6 @@ public class ServiceProprietaire {
 		} catch (Exception exc) {
 			throw new MonException(exc.getMessage(), "systeme");
 		}
-	}
+	}*/
 	
 }
