@@ -3,10 +3,11 @@ package com.epul.oeuvres.dao;
 import com.epul.oeuvres.meserreurs.MonException;
 import java.util.*;
 
-import com.epul.oeuvres.entities.*;
 import com.epul.oeuvres.persistance.*;
+import com.epul.oeuvres.entities.*;
 
 import javax.persistence.EntityTransaction;
+import java.util.List;
 
 public class ServiceAdherent extends EntityService {
 
@@ -20,6 +21,7 @@ public class ServiceAdherent extends EntityService {
 			entitymanager.merge(unAdherent);
 			entitymanager.flush();
 			transac.commit();
+			entitymanager.close();
 		} catch (Exception e) {
 			new MonException("Erreur d'insertion", e.getMessage());
 		}

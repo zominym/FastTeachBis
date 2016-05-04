@@ -21,9 +21,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
- */
 @Entity
 @Table(name = "oeuvrepret")
 @XmlRootElement
@@ -44,7 +41,7 @@ public class Oeuvrepret implements Serializable
     private String titreOeuvrepret;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "oeuvrepret", fetch = FetchType.LAZY)
-    private List<Emprunt> empruntList;
+//    private List<Emprunt> empruntList;
 
     @JoinColumn(name = "id_proprietaire", referencedColumnName = "id_proprietaire")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -85,20 +82,25 @@ public class Oeuvrepret implements Serializable
         this.titreOeuvrepret = titreOeuvrepret;
     }
 
-    @XmlTransient
-    public List<Emprunt> getEmpruntList()
-    {
-        return empruntList;
-    }
+//    @XmlTransient
+//    public List<Emprunt> getEmpruntList()
+//    {
+//        return empruntList;
+//    }
 
-    public void setEmpruntList(List<Emprunt> empruntList)
-    {
-        this.empruntList = empruntList;
-    }
+//    public void setEmpruntList(List<Emprunt> empruntList)
+//    {
+//        this.empruntList = empruntList;
+//    }
 
     public Proprietaire getIdProprietaire()
     {
         return idProprietaire;
+    }
+
+    public void setIdProprietaire(Proprietaire idProprietaire)
+    {
+        this.idProprietaire = idProprietaire;
     }
 
     public Proprietaire getProprietaire()
@@ -106,7 +108,7 @@ public class Oeuvrepret implements Serializable
         return idProprietaire;
     }
 
-    public void setIdProprietaire(Proprietaire idProprietaire)
+    public void setProprietaire(Proprietaire idProprietaire)
     {
         this.idProprietaire = idProprietaire;
     }
@@ -138,6 +140,6 @@ public class Oeuvrepret implements Serializable
     @Override
     public String toString()
     {
-        return "com.polytech.multimedia_library.Oeuvrepret[ idOeuvrepret=" + idOeuvrepret + " ]";
+        return "com.epul.oeuvres.entities.Oeuvrepret[ idOeuvrepret=" + idOeuvrepret + " ]";
     }
 }

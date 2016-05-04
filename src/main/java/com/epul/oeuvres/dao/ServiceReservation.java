@@ -12,46 +12,16 @@ import java.util.List;
 public class ServiceReservation extends EntityService {
 
     public List<Reservation> consulterListeReservations() throws MonException {{
-        List<Reservation> mesReservation = null;
+        List<Reservation> mesReservations = null;
         try {
             EntityTransaction transac = startTransaction();
                 transac.begin();
-                mesReservation = (List<Reservation>)  entitymanager.createQuery("select * from reservation").getResultList();
+                mesReservations = (List<Reservation>)  entitymanager.createQuery("SELECT r FROM Reservation r").getResultList();
                 entitymanager.close();
             }  catch (RuntimeException e){
                 new MonException("Erreur de lecture ", e.getMessage());
             }
-            return mesReservation;
-        }
-        /*String mysql = "select * from reservation;";
-        System.out.println(mysql);
-        return consulterListeReservations(mysql);*/
-    }
-
-    /*private List<Reservation> consulterListeReservations(String mysql) throws MonException {
-        List<Object> rs;
-        List<Reservation> mesReservations = new ArrayList<Reservation>();
-        ServiceOeuvrevente serveVente = new ServiceOeuvrevente();
-        ServiceAdherent serveAdherent = new ServiceAdherent();
-        int index = 0;
-        try {
-            DialogueBd unDialogueBd = DialogueBd.getInstance();
-            rs = DialogueBd.lecture(mysql);
-            while (index < rs.size()) {
-                // On crée un stage
-                Reservation uneResa = new Reservation();
-                // il faut redecouper la liste pour retrouver les lignes
-                uneResa.setOeuvrevente(serveVente.getOeuvrevente(Integer.parseInt(rs.get(index + 0).toString())));
-                uneResa.setAdherent(serveAdherent.getAdherent(Integer.parseInt(rs.get(index + 1).toString())));
-                uneResa.setDate((Date)rs.get(index + 2));
-                // On incrémente tous les 3 champs
-                index = index + 4;
-                mesReservations.add(uneResa);
-            }
-
             return mesReservations;
-        } catch (Exception exc) {
-            throw new MonException(exc.getMessage(), "systeme");
         }
-    }*/
+    }
 }

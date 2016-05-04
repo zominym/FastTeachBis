@@ -6,9 +6,6 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-/**
- * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
- */
 @Embeddable
 public class ReservationPK implements Serializable
 {
@@ -76,7 +73,7 @@ public class ReservationPK implements Serializable
     public String toString()
     {
         return
-            "com.polytech.multimedia_library.ReservationPK[ idOeuvrevente=" +
+            "com.epul.oeuvres.entities.ReservationPK[ idOeuvrevente=" +
             this.oeuvrevente.getIdOeuvrevente() +
             ", idAdherent=" +
             this.adherent.getIdAdherent() +

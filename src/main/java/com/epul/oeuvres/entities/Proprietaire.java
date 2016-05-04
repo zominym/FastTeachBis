@@ -17,9 +17,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
- */
 @Entity
 @Table(name = "proprietaire")
 @XmlRootElement
@@ -148,6 +145,6 @@ public class Proprietaire implements Serializable
     @Override
     public String toString()
     {
-        return "com.polytech.multimedia_library.Proprietaire[ idProprietaire=" + idProprietaire + " ]";
+        return "com.epul.oeuvres.entities.Proprietaire[ idProprietaire=" + idProprietaire + " ]";
     }
 }

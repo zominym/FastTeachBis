@@ -17,9 +17,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
- */
+
 @Entity
 @Table(name = "adherent")
 @XmlRootElement
@@ -47,8 +45,8 @@ public class Adherent implements Serializable
     @Column(name = "ville_adherent")
     private String villeAdherent;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "adherent", fetch = FetchType.LAZY)
-    private List<Emprunt> empruntList;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "adherent", fetch = FetchType.LAZY)
+//    private List<Emprunt> empruntList;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "adherent", fetch = FetchType.LAZY)
     private List<Reservation> reservationList;
@@ -113,16 +111,16 @@ public class Adherent implements Serializable
         this.villeAdherent = villeAdherent;
     }
 
-    @XmlTransient
-    public List<Emprunt> getEmpruntList()
-    {
-        return empruntList;
-    }
+//    @XmlTransient
+//    public List<Emprunt> getEmpruntList()
+//    {
+//        return empruntList;
+//    }
 
-    public void setEmpruntList(List<Emprunt> empruntList)
-    {
-        this.empruntList = empruntList;
-    }
+//    public void setEmpruntList(List<Emprunt> empruntList)
+//    {
+//        this.empruntList = empruntList;
+//    }
 
     @XmlTransient
     public List<Reservation> getReservationList()
@@ -162,6 +160,6 @@ public class Adherent implements Serializable
     @Override
     public String toString()
     {
-        return "com.polytech.multimedia_library.Adherent[ idAdherent=" + idAdherent + " ]";
+        return "com.epul.oeuvres.entities.Adherent[ idAdherent=" + idAdherent + " ]";
     }
 }

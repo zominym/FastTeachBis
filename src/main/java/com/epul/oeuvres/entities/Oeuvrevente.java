@@ -19,9 +19,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
- */
+
 @Entity
 @Table(name = "oeuvrevente")
 @XmlRootElement
@@ -121,12 +119,17 @@ public class Oeuvrevente implements Serializable
         return idProprietaire;
     }
 
+    public void setIdProprietaire(Proprietaire idProprietaire)
+    {
+        this.idProprietaire = idProprietaire;
+    }
+
     public Proprietaire getProprietaire()
     {
         return idProprietaire;
     }
 
-    public void setIdProprietaire(Proprietaire idProprietaire)
+    public void setProprietaire(Proprietaire idProprietaire)
     {
         this.idProprietaire = idProprietaire;
     }
@@ -169,6 +172,10 @@ public class Oeuvrevente implements Serializable
     @Override
     public String toString()
     {
-        return "com.polytech.multimedia_library.Oeuvrevente[ idOeuvrevente=" + idOeuvrevente + " ]";
+        return "com.epul.oeuvres.entities.Oeuvrevente[ idOeuvrevente=" + idOeuvrevente + " ]";
+    }
+
+    public boolean isReserved() {
+        return  (getEtatOeuvrevente() == "R");
     }
 }
