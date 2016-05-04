@@ -3,7 +3,7 @@ package com.epul.oeuvres.dao;
 import com.epul.oeuvres.meserreurs.MonException;
 import java.util.*;
 
-import com.epul.oeuvres.metier.*;
+import com.epul.oeuvres.entities.*;
 import com.epul.oeuvres.persistance.*;
 
 import javax.persistence.EntityTransaction;
@@ -13,17 +13,13 @@ public class ServiceAdherent extends EntityService {
 	// Mise � jour des caract�ristiques d'un adh�rent
 	// Le booleen indique s'il s'agit d'un nouvel adh�rent, auquel cas on fait
 	// une cr�ation
-
 	public void insertAdherent(Adherent unAdherent) throws MonException {
 		try {
 			EntityTransaction transac = startTransaction();
-			if (!entitymanager.contains(unAdherent)) {
-				transac.begin();
-				entitymanager.persist(unAdherent);
-				entitymanager.flush();
-				transac.commit();
-			}
-			entitymanager.close();
+			transac.begin();
+			entitymanager.merge(unAdherent);
+			entitymanager.flush();
+			transac.commit();
 		} catch (Exception e) {
 			new MonException("Erreur d'insertion", e.getMessage());
 		}
