@@ -1,0 +1,160 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+    padding-bottom: 40px;
+    color: rgba(101, 113, 119, 0.95);
+
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper > .container {
+    padding-right: 0;
+    padding-left: 0;
+}
+.navbar-wrapper .navbar {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.navbar-wrapper .navbar .container {
+    width: auto;
+}
+
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.marketing h2 {
+    font-weight: normal;
+}
+.marketing .col-lg-4 p {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.marketing {
+    background-color: rgba(255, 255, 255, .95);
+    border-radius: 5px;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+    /* Navbar positioning foo */
+    .navbar-wrapper {
+        margin-top: 20px;
+    }
+    .navbar-wrapper .container {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    .navbar-wrapper .navbar {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    /* The navbar becomes detached from the top, so we round the corners */
+    .navbar-wrapper .navbar {
+        border-radius: 4px;
+    }
+}
+
+/* MP TITLE CSS
+-------------------------------------------------- */
+
+.mp-title {
+    background-color: #acb0a0;
+    text-align: center;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* MP FOOTER CSS
+-------------------------------------------------- */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255,.8);
+    text-align: center;
+}
+
+td {
+    vertical-align: middle !important;
+}
+
+td.action {
+    text-align: center;
+}
+
+td a .fa-pencil-square-o {
+    color: #8a93d1;
+}
+td a .fa-eraser {
+    color: #d16b69;
+}
+td a .fa-plus-square {
+    color: #45b15e;
+}
+.mp-th-center{
+    text-align: center;
+}
+
+.mp-form {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.mp-btn-primary {
+    color: #fff;
+    background-color: #3aadb7;
+    border-color: #4189a4;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);
+    background-image: linear-gradient(to bottom, #4ca1b7 0, #406f88 100%);
+    background-repeat: repeat-x;
+}
+
+.mp-input {
+    margin: 15px 0px;
+}
+
+td span.fa-lock {
+    color: #d16b69;
+}
+
+td span.fa-unlock {
+    color: #45b15e;
+}
+
+.img-circle {
+    filter: grayscale(80%);
+    transition: filter .3s ease;
+}
+.img-circle:hover {
+    transition: filter .6s ease;
+    filter: none;
+}
