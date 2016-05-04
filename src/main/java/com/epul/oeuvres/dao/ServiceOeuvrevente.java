@@ -16,7 +16,7 @@ public class ServiceOeuvrevente extends EntityService{
 
             EntityTransaction transac = startTransaction();
             transac.begin();
-            mesOeuvres = (List<Oeuvrevente>)  entitymanager.createQuery("SELECT o FROM Oeuvrevente o ORDER BY o.titre_oeuvrevente").getResultList();
+            mesOeuvres = (List<Oeuvrevente>)  entitymanager.createQuery("SELECT o FROM Oeuvrevente o ORDER BY o.id_oeuvrevente").getResultList();
             entitymanager.close();
         }  catch (RuntimeException e){
             new MonException("Erreur de lecture ", e.getMessage());
