@@ -62,7 +62,11 @@
 					</form>
 				</c:if>
 				</td>
-				<td class="action"><a href="supprimerOeuvreVente?idOeuvrevente=${item.idOeuvrevente}"><span class="fa fa-eraser"></span></a></td>
+				<td class="action">
+				<c:if test="${item.etatOeuvrevente == 'L'}">
+					<a href="supprimerOeuvreVente?idOeuvrevente=${item.idOeuvrevente}"><span class="fa fa-eraser"></span></a>
+				</c:if>
+				</td>
 				</tr>
 			</c:forEach>
 		</table>
