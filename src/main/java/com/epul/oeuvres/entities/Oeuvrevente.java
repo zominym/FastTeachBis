@@ -119,6 +119,11 @@ public class Oeuvrevente implements Serializable
         return idProprietaire;
     }
 
+    public Proprietaire getProprietaire()
+    {
+        return idProprietaire;
+    }
+
     public void setIdProprietaire(Proprietaire idProprietaire)
     {
         this.idProprietaire = idProprietaire;
