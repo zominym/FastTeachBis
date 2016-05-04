@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.epul.oeuvres.meserreurs.MonException;
-import com.epul.oeuvres.metier.Adherent;
-import com.epul.oeuvres.metier.Oeuvrepret;
-import com.epul.oeuvres.persistance.DialogueBd;
+import com.epul.oeuvres.entities.*;
 
 import javax.persistence.EntityTransaction;
 

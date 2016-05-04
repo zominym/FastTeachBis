@@ -1,7 +1,7 @@
 package com.epul.oeuvres.dao;
 
 import com.epul.oeuvres.meserreurs.MonException;
-import com.epul.oeuvres.metier.Proprietaire;
+import com.epul.oeuvres.entities.*;
 
 import javax.persistence.EntityTransaction;
 import java.util.List;

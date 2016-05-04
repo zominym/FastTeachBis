@@ -169,4 +169,8 @@ public class Oeuvrevente implements Serializable
     {
         return "com.epul.oeuvres.entities.Oeuvrevente[ idOeuvrevente=" + idOeuvrevente + " ]";
     }
+
+    public boolean isReserved() {
+        return  (getEtatOeuvrevente() == "R");
+    }
 }

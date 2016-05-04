@@ -1,12 +1,10 @@
 package com.epul.oeuvres.dao;
 
 import com.epul.oeuvres.meserreurs.MonException;
-import java.util.*;
-
-import com.epul.oeuvres.metier.*;
-import com.epul.oeuvres.persistance.*;
+import com.epul.oeuvres.entities.Adherent;
 
 import javax.persistence.EntityTransaction;
+import java.util.List;
 
 public class ServiceAdherent extends EntityService {
 
@@ -19,7 +17,7 @@ public class ServiceAdherent extends EntityService {
 			EntityTransaction transac = startTransaction();
 			if (!entitymanager.contains(unAdherent)) {
 				transac.begin();
-				entitymanager.persist(unAdherent);
+				entitymanager.merge(unAdherent);
 				entitymanager.flush();
 				transac.commit();
 			}
