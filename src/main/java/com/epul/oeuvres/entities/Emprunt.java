@@ -1,4 +1,4 @@
-package com.polytech.multimedia_library.entities;
+package com.epul.oeuvres.entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
+ *
  */
 @Entity
 @Table(name = "emprunt")

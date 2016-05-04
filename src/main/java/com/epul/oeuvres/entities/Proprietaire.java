@@ -1,4 +1,4 @@
-package com.polytech.multimedia_library.entities;
+package com.epul.oeuvres.entities;
 
 import java.io.Serializable;
 import java.util.List;

@@ -59,14 +59,14 @@ public class MultiControleur extends MultiActionController {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "Erreur";
 		}
-		destinationPage = "home";
-		return new ModelAndView(destinationPage);
+		destinationPage = "listerAdherent";
+		return new ModelAndView("redirect:" + destinationPage);
 	}
 
 	@RequestMapping("ajouterAdherent")
 	public ModelAndView ajouterAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		String destinationPage = "";
+		String destinationPage;
 		try {
 			destinationPage = "ajouterAdherent";
 		} catch (Exception e) {
@@ -149,22 +149,22 @@ public class MultiControleur extends MultiActionController {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "erreur";
 		}
-		return new ModelAndView(destinationPage);
+		return new ModelAndView("redirect:" + destinationPage);
 	}
-	@RequestMapping("supprimerAdherent**")
+	@RequestMapping("supprimerAdherent")
 	public ModelAndView supprimerAdherent (HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String destinationPage;
 		try {
-			//int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
-			//ServiceAdherent unService = new ServiceAdherent();
-			//unService.supprimerAdherent(idAdherent);
+			int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
+			ServiceAdherent unService = new ServiceAdherent();
+			unService.supprimerAdherent(idAdherent);
 
 			destinationPage = "listerAdherent";
 		} catch (Exception e) {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "erreur";
 		}
-		return new ModelAndView(destinationPage);
+		return new ModelAndView("redirect:" + destinationPage);
 	}
 	@RequestMapping("ajouterOeuvreVente")
 	public ModelAndView ajouterOeuvreVente (HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -200,7 +200,7 @@ public class MultiControleur extends MultiActionController {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "erreur";
 		}
-		return new ModelAndView(destinationPage);
+		return new ModelAndView("redirect:" + destinationPage);
 	}
 	@RequestMapping("listerProprietaires")
 	public ModelAndView listerProprietaires (HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -229,7 +229,7 @@ public class MultiControleur extends MultiActionController {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "erreur";
 		}
-		return new ModelAndView(destinationPage);
+		return new ModelAndView("redirect:" + destinationPage);
 	}
 	@RequestMapping("reserverOeuvreVente")
 	public ModelAndView reserverOeuvreVente (HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -248,7 +248,7 @@ public class MultiControleur extends MultiActionController {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "erreur";
 		}
-		return new ModelAndView(destinationPage);
+		return new ModelAndView("redirect:" + destinationPage);
 	}
 	@RequestMapping("listerReservations")
 	public ModelAndView listerReservations (HttpServletRequest request, HttpServletResponse response) throws Exception {

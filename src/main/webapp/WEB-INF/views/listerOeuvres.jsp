@@ -51,8 +51,7 @@
 				<td>${item.getProprietaire().getNomProprietaire()} ${item.proprietaire.getPrenomProprietaire()}</td>
 				<td class="mp-th-center">
 				<c:if test="${item.etatOeuvrevente == 'L'}">
-					<form action="" method="post">
-						<input type="hidden" name="action" value="reserverOeuvreVente"/>
+					<form action="reserverOeuvreVente" method="post">
 						<input type="hidden" name="idOeuvrevente" value="${item.idOeuvrevente}"/>
 						<select class="selectpicker" name="idAdherent" id="id_resa">
 						<c:forEach items="${mesAdherents}" var="ad">
