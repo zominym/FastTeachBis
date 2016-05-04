@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ServiceProprietaire extends EntityService {
 
-	public Proprietaire consulterProprietaire(String id) throws MonException {
+	public Proprietaire consulterProprietaire(int id) throws MonException {
 		Proprietaire unProp = null;
 		try {
 

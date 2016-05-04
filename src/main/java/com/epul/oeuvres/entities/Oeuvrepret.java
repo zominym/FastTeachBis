@@ -1,5 +1,7 @@
 package com.epul.oeuvres.entities;
 
+import com.epul.oeuvres.dao.ServiceProprietaire;
+
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -95,6 +97,11 @@ public class Oeuvrepret implements Serializable
     }
 
     public Proprietaire getIdProprietaire()
+    {
+        return idProprietaire;
+    }
+
+    public Proprietaire getProprietaire()
     {
         return idProprietaire;
     }

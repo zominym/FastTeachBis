@@ -19,4 +19,5 @@
     </properties>
   </persistence-unit>
   <persistence-unit name="persistenceUnit"/>
+  <persistence-unit name="persistenceUnit2"/>
 </persistence>

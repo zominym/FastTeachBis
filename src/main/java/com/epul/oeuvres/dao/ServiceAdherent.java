@@ -37,7 +37,7 @@ public class ServiceAdherent extends EntityService {
 		try {
 			EntityTransaction transac = startTransaction();
 			transac.begin();
-			mesAdherents = (List<Adherent>)  entitymanager.createQuery("SELECT a FROM Adherent a ORDER BY a.nomAdherent").getResultList();
+			mesAdherents = (List<Adherent>)  entitymanager.createQuery("SELECT a FROM Adherent a").getResultList();
 			entitymanager.close();
 		}  catch (RuntimeException e){
 			new MonException("Erreur de lecture ", e.getMessage());
