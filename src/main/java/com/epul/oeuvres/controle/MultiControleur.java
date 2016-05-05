@@ -135,13 +135,12 @@ public class MultiControleur extends MultiActionController {
 	public ModelAndView updaterAdherent (HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String destinationPage;
 		try {
-			Adherent unAdherent = new Adherent();
+			ServiceAdherent unService = new ServiceAdherent();
+			Adherent unAdherent = unService.consulterAdherent(Integer.parseInt(request.getParameter("idAdherent")));
 			unAdherent.setNomAdherent(request.getParameter("txtnom"));
 			unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
 			unAdherent.setVilleAdherent(request.getParameter("txtville"));
-			ServiceAdherent unService = new ServiceAdherent();
-			int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
-			unService.updaterAdherent(unAdherent, idAdherent);
+			unService.updaterAdherent(unAdherent, 0);
 
 			destinationPage = "listerAdherent";
 		} catch (Exception e) {

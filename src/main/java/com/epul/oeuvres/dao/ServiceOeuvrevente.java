@@ -2,10 +2,8 @@ package com.epul.oeuvres.dao;
 
 import com.epul.oeuvres.meserreurs.MonException;
 import com.epul.oeuvres.entities.*;
-import com.epul.oeuvres.persistance.DialogueBd;
 
 import javax.persistence.EntityTransaction;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceOeuvrevente extends EntityService{
@@ -46,18 +44,18 @@ public class ServiceOeuvrevente extends EntityService{
     }
 
 	public void insererOeuvrevente(Oeuvrevente uneOeuvrevente, int idProprietaire) throws MonException {
-        Proprietaire prop = new ServiceProprietaire().consulterProprietaire(idProprietaire);
-        System.out.println("Before setId : " + idProprietaire + prop);
-        uneOeuvrevente.setIdProprietaire(prop);
         try {
             EntityTransaction transac = startTransaction();
             transac.begin();
-            System.out.println("Before merge");
+            Proprietaire p = entitymanager.find(Proprietaire.class, idProprietaire);
+            uneOeuvrevente.setIdProprietaire(p);
+            uneOeuvrevente.setEtatOeuvrevente("L");
             entitymanager.merge(uneOeuvrevente);
             entitymanager.flush();
             transac.commit();
             entitymanager.close();
         } catch (Exception e) {
+            System.err.println("Erreur d'insertion :"+e.getMessage());
             new MonException("Erreur d'insertion", e.getMessage());
         }
 
@@ -78,10 +76,18 @@ public class ServiceOeuvrevente extends EntityService{
 	public void supprimerOeuvrevente(int idOeuvrevente) throws MonException {
 
         try {
-            Oeuvrevente toRemove = getOeuvrevente(idOeuvrevente);
-            entitymanager.remove(toRemove);
-        } catch (Exception e){
-            new MonException("Erreur de suppression", e.getMessage());
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            Oeuvrevente unAd = entitymanager.find(Oeuvrevente.class, idOeuvrevente);
+            entitymanager.remove(unAd);
+            entitymanager.flush();
+            transac.commit();
+            entitymanager.close();
+            emf.close();
+
+        } catch (Exception e) {
+            System.err.println("Erreur de lecture: "+e.getMessage());
+            new MonException("Erreur de lecture", e.getMessage());
         }
 
 		/*String mysql;
@@ -99,8 +105,13 @@ public class ServiceOeuvrevente extends EntityService{
 
             EntityTransaction transac = startTransaction();
             transac.begin();
-            entitymanager.createQuery("update oeuvrevente set etat_oeuvrevente='R' where id_oeuvrevente="+idOeuvrevente);
-            entitymanager.createQuery("insert into reservation values("+idOeuvrevente+","+idAdherent+", DATE(NOW()),'confirmee'");
+            Oeuvrevente uneOeuvre = entitymanager.find(Oeuvrevente.class, idOeuvrevente);
+            uneOeuvre.setEtatOeuvrevente("R");
+            ServiceReservation sr = new ServiceReservation();
+            sr.insererReservation(idOeuvrevente, idAdherent);
+            entitymanager.merge(uneOeuvre);
+            entitymanager.flush();
+            transac.commit();
             entitymanager.close();
         }  catch (RuntimeException e){
             new MonException("Erreur de lecture ", e.getMessage());

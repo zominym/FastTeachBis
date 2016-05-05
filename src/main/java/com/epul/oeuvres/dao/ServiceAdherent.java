@@ -1,10 +1,7 @@
 package com.epul.oeuvres.dao;
 
+import com.epul.oeuvres.entities.Adherent;
 import com.epul.oeuvres.meserreurs.MonException;
-import java.util.*;
-
-import com.epul.oeuvres.persistance.*;
-import com.epul.oeuvres.entities.*;
 
 import javax.persistence.EntityTransaction;
 import java.util.List;
@@ -44,7 +41,19 @@ public class ServiceAdherent extends EntityService {
 	}
 
 	public void updaterAdherent(Adherent unAdherent, int idAdherent)  throws MonException {
-		unAdherent.setIdAdherent(idAdherent);
+
+		try {
+			EntityTransaction transac = startTransaction();
+			transac.begin();
+			entitymanager.merge(unAdherent);
+			entitymanager.flush();
+			transac.commit();
+			entitymanager.close();
+		} catch (Exception e) {
+			new MonException("Erreur d'insertion", e.getMessage());
+		}
+
+		/*unAdherent.setIdAdherent(idAdherent);
 		try {
 			EntityTransaction transac = startTransaction();
 			transac.begin();
@@ -52,7 +61,7 @@ public class ServiceAdherent extends EntityService {
 			entitymanager.close();
 		}  catch (RuntimeException e){
 			new MonException("Erreur de lecture ", e.getMessage());
-		}
+		}*/
 
 //		String mysql;
 //
@@ -84,17 +93,19 @@ public class ServiceAdherent extends EntityService {
 		return unAd;
 	}
 
-	public void supprimerAdherent(int idAdherent) throws MonException {
-		Adherent a = consulterAdherent(idAdherent);
-
+	public void supprimerAdherent(int id) throws MonException {
 		try {
 		EntityTransaction transac = startTransaction();
 		transac.begin();
-		entitymanager.remove(a);
+		Adherent unAd = entitymanager.find(Adherent.class, id);
+		entitymanager.remove(unAd);
+		entitymanager.flush();
+		transac.commit();
 		entitymanager.close();
 		emf.close();
 
 		} catch (Exception e) {
+			System.err.println("Erreur de lecture: "+e.getMessage());
 			new MonException("Erreur de lecture", e.getMessage());
 		}
 	}

@@ -27,7 +27,6 @@ public class Adherent implements Serializable
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "id_adherent")
     private Integer idAdherent;
 

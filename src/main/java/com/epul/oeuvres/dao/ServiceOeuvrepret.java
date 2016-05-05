@@ -1,11 +1,9 @@
 package com.epul.oeuvres.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.epul.oeuvres.meserreurs.MonException;
 import com.epul.oeuvres.entities.*;
-import com.epul.oeuvres.persistance.DialogueBd;
 
 import javax.persistence.EntityTransaction;
 

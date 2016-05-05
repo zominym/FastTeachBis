@@ -4,6 +4,7 @@ import com.epul.oeuvres.meserreurs.MonException;
 import com.epul.oeuvres.entities.*;
 
 import javax.persistence.EntityTransaction;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,4 +25,24 @@ public class ServiceReservation extends EntityService {
             return mesReservations;
         }
     }
+
+    public void insererReservation(int idOeuvrevente, int idAdherent) throws MonException {
+
+        try {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            Oeuvrevente o = entitymanager.find(Oeuvrevente.class, idOeuvrevente);
+            Adherent a = entitymanager.find(Adherent.class, idAdherent);
+            ReservationPK rpk = new ReservationPK(o,a);
+            Reservation r = new Reservation(rpk, new Date(), "C");
+            entitymanager.merge(r);
+            entitymanager.flush();
+            transac.commit();
+            entitymanager.close();
+        } catch (Exception e) {
+            new MonException("Erreur d'insertion", e.getMessage());
+        }
+    }
+
+
 }
