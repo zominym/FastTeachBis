@@ -67,6 +67,39 @@ public class UserService extends EntityService {
 		return mesUsers;
 	}
 
+    public List<User> getTrainers() throws MonException {
+        List<User> mesUsers = null;
+        try {
+            EntityTransaction transac = startTransaction();
+            transac.begin();
+            mesUsers = (List<User>)  entitymanager.createQuery("SELECT u FROM User u WHERE u.role = 'TRAINER'").getResultList();
+            entitymanager.close();
+        }  catch (RuntimeException e){
+            new MonException("Erreur de lecture ", e.getMessage());
+        }
+        return mesUsers;
+    }
+
+	public List<User> getTraineesFromTrainer(int idTrainer) throws MonException() {
+		List<User> mesUsers = null;
+
+		try {
+			EntityTransaction transac = startTransaction();
+			transac.begin();
+
+			TypedQuery<User> query = entitymanager.createQuery(
+					"SELECT u FROM User u, TrainingGroup t  " +
+					"WHERE u.user_id = t.trainee_id " +
+					"AND t.trainer_id = :id", User.class);
+
+			mesUsers = query.setParameter("id", idTrainer).getResultList();
+            entitymanager.close();
+        }  catch (RuntimeException e){
+            new MonException("Erreur de lecture ", e.getMessage());
+        }
+        return mesUsers;
+	}
+
 	public void updaterUser(User unUser, int idUser)  throws MonException {
 
 		try {

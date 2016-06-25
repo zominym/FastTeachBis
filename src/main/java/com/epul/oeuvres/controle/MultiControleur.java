@@ -79,6 +79,22 @@ public class MultiControleur extends MultiActionController {
 		return new ModelAndView(destinationPage);
 	}
 
+	@RequestMapping("/trainers/list")
+	public ModelAndView displayTrainees(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String destinationPage;
+		try {
+			// HttpSession session = request.getSession();
+			UserService unService = new UserService();
+			request.setAttribute("myUsers", unService.getTrainers());
+			destinationPage = "listUsers";
+		} catch (MonException e) {
+			request.setAttribute("MesErreurs", e.getMessage());
+			destinationPage = "erreur";
+
+		}
+		return new ModelAndView(destinationPage);
+	}
+
 	@RequestMapping("/trainee/details")
 	public ModelAndView traineeDetails(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String destinationPage;
@@ -97,6 +113,29 @@ public class MultiControleur extends MultiActionController {
 //		}
 		return new ModelAndView(destinationPage);
 	}
+
+	@RequestMapping("/trainer/details")
+	public ModelAndView traineeDetails(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String destinationPage;
+//		try {
+		// HttpSession session = request.getSession();
+		GameService gs = new GameService();
+		request.setAttribute("trainerGames", gs.getGamesOfLearner(Integer.parseInt(request.getParameter("ID"))));
+
+		UserService us = new UserService();
+		request.setAttribute("trainer", us.getUser(Integer.parseInt(request.getParameter("ID"))));
+
+		request.setAttribute("trainees", us.getTraineesFromTrainer(Integer.parseInt(request.getParamater("ID"))));
+
+		destinationPage = "trainerDetails";
+//		} catch (MonException e) {
+//			request.setAttribute("MesErreurs", e.getMessage());
+//			destinationPage = "erreur";
+//		}
+		return new ModelAndView(destinationPage);
+	}
+
+
 
 	@RequestMapping("insererAdherent")
 	public ModelAndView insererAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
