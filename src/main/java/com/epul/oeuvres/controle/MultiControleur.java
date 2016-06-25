@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
+import javax.print.attribute.IntegerSyntax;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -40,6 +41,60 @@ public class MultiControleur extends MultiActionController {
 			destinationPage = "erreur";
 
 		}
+		return new ModelAndView(destinationPage);
+	}
+
+	@RequestMapping("/users/list")
+	public ModelAndView displayUsers(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String destinationPage;
+		try {
+			// HttpSession session = request.getSession();
+			UserService unService = new UserService();
+			request.setAttribute("myUsers", unService.getUsers());
+			for (User u : unService.getUsers()) {
+				System.out.println(u.toString());
+			}
+			destinationPage = "listUsers";
+		} catch (MonException e) {
+			request.setAttribute("MesErreurs", e.getMessage());
+			destinationPage = "erreur";
+
+		}
+		return new ModelAndView(destinationPage);
+	}
+
+	@RequestMapping("/trainees/list")
+	public ModelAndView displayTrainees(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String destinationPage;
+		try {
+			// HttpSession session = request.getSession();
+			UserService unService = new UserService();
+			request.setAttribute("myUsers", unService.getTrainees());
+			destinationPage = "listUsers";
+		} catch (MonException e) {
+			request.setAttribute("MesErreurs", e.getMessage());
+			destinationPage = "erreur";
+
+		}
+		return new ModelAndView(destinationPage);
+	}
+
+	@RequestMapping("/trainee/details")
+	public ModelAndView traineeDetails(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String destinationPage;
+//		try {
+			// HttpSession session = request.getSession();
+			GameService gs = new GameService();
+			request.setAttribute("traineeGames", gs.getGamesOfLearner(Integer.parseInt(request.getParameter("ID"))));
+
+			UserService us = new UserService();
+			request.setAttribute("trainee", us.getUser(Integer.parseInt(request.getParameter("ID"))));
+
+			destinationPage = "traineeDetails";
+//		} catch (MonException e) {
+//			request.setAttribute("MesErreurs", e.getMessage());
+//			destinationPage = "erreur";
+//		}
 		return new ModelAndView(destinationPage);
 	}
 
