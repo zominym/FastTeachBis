@@ -80,7 +80,7 @@ public class MultiControleur extends MultiActionController {
 	}
 
 	@RequestMapping("/trainers/list")
-	public ModelAndView displayTrainees(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView displayTrainers(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String destinationPage;
 		try {
 			// HttpSession session = request.getSession();
@@ -115,17 +115,15 @@ public class MultiControleur extends MultiActionController {
 	}
 
 	@RequestMapping("/trainer/details")
-	public ModelAndView traineeDetails(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView trainerDetails(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String destinationPage;
 //		try {
 		// HttpSession session = request.getSession();
-		GameService gs = new GameService();
-		request.setAttribute("trainerGames", gs.getGamesOfLearner(Integer.parseInt(request.getParameter("ID"))));
 
 		UserService us = new UserService();
 		request.setAttribute("trainer", us.getUser(Integer.parseInt(request.getParameter("ID"))));
 
-		request.setAttribute("trainees", us.getTraineesFromTrainer(Integer.parseInt(request.getParamater("ID"))));
+		request.setAttribute("trainees", us.getTraineesFromTrainer(Integer.parseInt(request.getParameter("ID"))));
 
 		destinationPage = "trainerDetails";
 //		} catch (MonException e) {

@@ -18,25 +18,6 @@
     </div>
 
     <div class="mp-title">
-        <h1>Liste des jeux</h1>
-    </div>
-
-
-    <table border="1" class="table table-bordered table-hover" >
-        <tr>
-            <th>Numéro</th>
-            <th>Label</th>
-        </tr>
-
-        <c:forEach items="${trainerGames}" var="item">
-            <tr>
-                <td>${item.gameId}</td>
-                <td>${item.gameLabel}</td>
-            </tr>
-        </c:forEach>
-    </table>
-
-    <div class="mp-title">
         <h1>Liste des élèves</h1>
     </div>
 
@@ -47,10 +28,10 @@
             <th>Prénom</th>
             <th>Nom</th>
             <th>Rôle</th>
-            <th colspan="2" class="mp-th-center">Actions</th>
+            <th colspan="3" class="mp-th-center">Actions</th>
         </tr>
 
-        <c:forEach items="${myUsers}" var="item">
+        <c:forEach items="${trainees}" var="item">
             <tr>
                 <td>${item.ID}</td>
                 <td>${item.name}</td>

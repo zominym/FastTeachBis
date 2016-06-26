@@ -16,7 +16,7 @@
 				<th>Prénom</th>
 				<th>Nom</th>
 				<th>Rôle</th>
-				<th colspan="2" class="mp-th-center">Actions</th>
+				<th colspan="3" class="mp-th-center">Actions</th>
 			</tr>
 
 			<c:forEach items="${myUsers}" var="item">
@@ -25,7 +25,15 @@
 				<td>${item.name}</td>
 				<td>${item.surname}</td>
 				<td>${item.role}</td>
-				<td class="action"><a href="/trainee/details?ID=${item.ID}">details</a></td>
+				<c:if test="${item.role == 'TRAINEE'}">
+					<td class="action"><a href="/trainee/details?ID=${item.ID}">details</a></td>
+				</c:if>
+				<c:if test="${item.role == 'TRAINER'}">
+					<td class="action"><a href="/trainer/details?ID=${item.ID}">details</a></td>
+				</c:if>
+				<c:if test="${item.role == 'ADMIN'}">
+					<td class="action">admin</td>
+				</c:if>
 				<td class="action"><a href="modifyUser?ID=${item.ID}"><span class="fa fa-pencil-square-o"></span></a></td>
 				<td class="action"><a href="deleteUser?ID=${item.ID}"><span class="fa fa-eraser"></span></a></td>
 			</tr>

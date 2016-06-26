@@ -4,6 +4,7 @@ import com.epul.oeuvres.entities.User;
 import com.epul.oeuvres.meserreurs.MonException;
 
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class UserService extends EntityService {
@@ -80,7 +81,7 @@ public class UserService extends EntityService {
         return mesUsers;
     }
 
-	public List<User> getTraineesFromTrainer(int idTrainer) throws MonException() {
+	public List<User> getTraineesFromTrainer(int idTrainer) throws MonException {
 		List<User> mesUsers = null;
 
 		try {
@@ -89,8 +90,8 @@ public class UserService extends EntityService {
 
 			TypedQuery<User> query = entitymanager.createQuery(
 					"SELECT u FROM User u, TrainingGroup t  " +
-					"WHERE u.user_id = t.trainee_id " +
-					"AND t.trainer_id = :id", User.class);
+					"WHERE u.ID = t.traineeId " +
+					"AND t.trainerId = :id", User.class);
 
 			mesUsers = query.setParameter("id", idTrainer).getResultList();
             entitymanager.close();
