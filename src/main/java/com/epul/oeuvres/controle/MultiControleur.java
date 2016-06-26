@@ -35,8 +35,7 @@ public class MultiControleur extends MultiActionController {
 			// HttpSession session = request.getSession();
 			UserService unService = new UserService();
 			request.setAttribute("myUsers", unService.getUsers());
-			destinationPage = "listUsers";
-			System.err.println("CAN YOU SEE ME ???");
+			destinationPage = "user/listUsers";
 		} catch (MonException e) {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "erreur";
@@ -52,7 +51,7 @@ public class MultiControleur extends MultiActionController {
 			// HttpSession session = request.getSession();
 			UserService unService = new UserService();
 			request.setAttribute("myUsers", unService.getTrainees());
-			destinationPage = "listUsers";
+			destinationPage = "user/listUsers";
 		} catch (MonException e) {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "erreur";
@@ -68,7 +67,7 @@ public class MultiControleur extends MultiActionController {
 			// HttpSession session = request.getSession();
 			UserService unService = new UserService();
 			request.setAttribute("myUsers", unService.getTrainers());
-			destinationPage = "listUsers";
+			destinationPage = "user/listUsers";
 		} catch (MonException e) {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "erreur";
@@ -89,7 +88,7 @@ public class MultiControleur extends MultiActionController {
 
 		request.setAttribute("traineeResults", us.getTraineeResults(Integer.parseInt(request.getParameter("ID"))));
 
-		destinationPage = "traineeDetails";
+		destinationPage = "user/traineeDetails";
 
 		return new ModelAndView(destinationPage);
 	}
@@ -105,7 +104,7 @@ public class MultiControleur extends MultiActionController {
 
 		request.setAttribute("trainees", us.getTraineesFromTrainer(Integer.parseInt(request.getParameter("ID"))));
 
-		destinationPage = "trainerDetails";
+		destinationPage = "user/trainerDetails";
 //		} catch (MonException e) {
 //			request.setAttribute("MesErreurs", e.getMessage());
 //			destinationPage = "erreur";
@@ -120,7 +119,7 @@ public class MultiControleur extends MultiActionController {
 		GameService gs = new GameService();
 		request.setAttribute("games", gs.getGames());
 
-		destinationPage = "listGames";
+		destinationPage = "game/listGames";
 		return new ModelAndView(destinationPage);
 	}
 

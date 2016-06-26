@@ -30,26 +30,15 @@ public class UserService extends EntityService {
 	// Fabrique et renvoie une liste d'objets adh�rent contenant le r�sultat de
 	// la requ�te BDD
 	public List<User> getUsers() throws MonException {
-		System.err.println("1");
 		List<User> mesUsers = null;
-		System.err.println("2");
 		try {
-			System.err.println("3");
 			EntityTransaction transac = startTransaction();
-			System.err.println("4");
 			transac.begin();
-			System.err.println("5");
-			System.err.println("Mes users before : " + mesUsers);
 			mesUsers = (List<User>)  entitymanager.createQuery("SELECT u FROM User u").getResultList();
-			System.err.println("6");
-			System.err.println("Mes users after : " + mesUsers);
 			entitymanager.close();
 		}  catch (RuntimeException e){
-			System.err.println("3bis");
 			new MonException("Erreur de lecture ", e.getMessage());
-			System.err.println(e.getMessage());
 		}
-		System.err.println("fin");
 		return mesUsers;
 	}
 

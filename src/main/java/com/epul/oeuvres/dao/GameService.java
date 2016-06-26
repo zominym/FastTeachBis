@@ -17,10 +17,6 @@ public class GameService extends EntityService {
 	public List<Game> getGamesOfLearner(int learner) {
 		EntityTransaction transaction = startTransaction();
 		transaction.begin();
-//		TypedQuery<Game> query = entitymanager.createQuery(
-//				"SELECT g FROM Game g JOIN g.Registration r  " +
-//						"on g.gameId=r.gameId " +
-//						"WHERE r.traineeId = :id", Game.class);
 		TypedQuery<Game> query = entitymanager.createQuery(
 		"SELECT g FROM Game g, Registration r  " +
 				"WHERE g.gameId=r.gameId " +
