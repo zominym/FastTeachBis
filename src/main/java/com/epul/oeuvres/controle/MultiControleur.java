@@ -148,7 +148,15 @@ public class MultiControleur extends MultiActionController {
 		return new ModelAndView("redirect:" +destinationPage);
 	}
 
-    @RequestMapping("insertGame")
+	@RequestMapping("/game/insert/form")
+	public ModelAndView fillGameForm(HttpServletRequest request, HttpServletResponse response) {
+		String destinationPage;
+
+		destinationPage = "game/insertGame";
+		return new ModelAndView(destinationPage);
+	}
+
+    @RequestMapping("/game/insert/do")
     public ModelAndView insertGame(HttpServletRequest request, HttpServletResponse response) {
         String destinationPage;
 
@@ -158,7 +166,7 @@ public class MultiControleur extends MultiActionController {
             GameService service = new GameService();
             service.insertGame(game);
 
-            destinationPage = "trainees/listGames";
+            destinationPage = "/games/list";
         } catch (Exception e) {
             request.setAttribute("MesErreurs", e.getMessage());
             destinationPage = "erreur";
