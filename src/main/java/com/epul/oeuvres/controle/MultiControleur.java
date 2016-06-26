@@ -157,7 +157,59 @@ public class MultiControleur extends MultiActionController {
 		return new ModelAndView(destinationPage);
 	}
 
-	@RequestMapping("/trainee/edit/{ID}")
+	@RequestMapping("/game/details")
+	public ModelAndView gameDetails(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String destinationPage;
+
+		GameService gs = new GameService();
+		request.setAttribute("game", gs.getGame(Integer.parseInt(request.getParameter("ID"))));
+
+		request.setAttribute("missions", gs.getGameMissions(Integer.parseInt(request.getParameter("ID"))));
+
+		destinationPage = "game/gameDetails";
+		return new ModelAndView(destinationPage);
+	}
+
+	@RequestMapping("/mission/details")
+	public ModelAndView missionDetails(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String destinationPage;
+
+		GameService gs = new GameService();
+		request.setAttribute("mission", gs.getMission(Integer.parseInt(request.getParameter("ID"))));
+
+		request.setAttribute("objectives", gs.getMissionObjectives(Integer.parseInt(request.getParameter("ID"))));
+
+		destinationPage = "mission/missionDetails";
+		return new ModelAndView(destinationPage);
+	}
+
+	@RequestMapping("/objective/details")
+	public ModelAndView objectiveDetails(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String destinationPage;
+
+		GameService gs = new GameService();
+		request.setAttribute("objective", gs.getObjective(Integer.parseInt(request.getParameter("ID"))));
+
+		request.setAttribute("actions", gs.getObjectiveActions(Integer.parseInt(request.getParameter("ID"))));
+
+		destinationPage = "objective/objectiveDetails";
+		return new ModelAndView(destinationPage);
+	}
+
+	@RequestMapping("/action/details")
+	public ModelAndView actionDetails(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String destinationPage;
+
+		GameService gs = new GameService();
+		request.setAttribute("action", gs.getAction(Integer.parseInt(request.getParameter("ID"))));
+
+		request.setAttribute("children", gs.getActionChildren(Integer.parseInt(request.getParameter("ID"))));
+
+		destinationPage = "action/actionDetails";
+		return new ModelAndView(destinationPage);
+	}
+
+	@RequestMapping("/trainee/edit")
 	public ModelAndView fillUpdateUserForm(HttpServletRequest request, HttpServletResponse response){
 		String destinationPage;
 		destinationPage = "user.updateUser";

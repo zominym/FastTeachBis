@@ -1,17 +1,15 @@
 package com.epul.oeuvres.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by sydne on 15/06/2016.
  */
 @Entity
+@Table(name = "OBJECTIVE")
 public class Objective {
     private int objectiveId;
-    private String obectifLabel;
+    private String objectiveLabel;
     private Integer totalScoreMin;
     private int missionId;
 
@@ -27,12 +25,12 @@ public class Objective {
 
     @Basic
     @Column(name = "OBECTIF_LABEL")
-    public String getObectifLabel() {
-        return obectifLabel;
+    public String getObjectiveLabel() {
+        return objectiveLabel;
     }
 
-    public void setObectifLabel(String obectifLabel) {
-        this.obectifLabel = obectifLabel;
+    public void setObjectiveLabel(String objectiveLabel) {
+        this.objectiveLabel = objectiveLabel;
     }
 
     @Basic
@@ -53,7 +51,7 @@ public class Objective {
         Objective objective = (Objective) o;
 
         if (objectiveId != objective.objectiveId) return false;
-        if (obectifLabel != null ? !obectifLabel.equals(objective.obectifLabel) : objective.obectifLabel != null)
+        if (objectiveLabel != null ? !objectiveLabel.equals(objective.objectiveLabel) : objective.objectiveLabel != null)
             return false;
         if (totalScoreMin != null ? !totalScoreMin.equals(objective.totalScoreMin) : objective.totalScoreMin != null)
             return false;
@@ -64,7 +62,7 @@ public class Objective {
     @Override
     public int hashCode() {
         int result = objectiveId;
-        result = 31 * result + (obectifLabel != null ? obectifLabel.hashCode() : 0);
+        result = 31 * result + (objectiveLabel != null ? objectiveLabel.hashCode() : 0);
         result = 31 * result + (totalScoreMin != null ? totalScoreMin.hashCode() : 0);
         return result;
     }

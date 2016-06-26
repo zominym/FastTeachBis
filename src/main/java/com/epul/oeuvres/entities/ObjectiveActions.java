@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by sydne on 15/06/2016.
  */
 @Entity
-@Table(name = "objective_actions", schema = "test", catalog = "")
+@Table(name = "OBJECTIVE_ACTIONS")
 @IdClass(ObjectiveActionsPK.class)
 public class ObjectiveActions {
     private int actionId;

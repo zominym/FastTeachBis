@@ -3,12 +3,14 @@ package com.epul.oeuvres.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Date;
 
 /**
  * Created by sydne on 15/06/2016.
  */
 @Entity
+@Table(name = "CALENDAR")
 public class Calendar {
     private Date daydate;
 
