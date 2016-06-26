@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
 <footer>
-    Made by Zominy and Guyl from Vial base code.
+    Réalisé par une équipe de Polytech informatique 4A dans le cadre d'un projet scolaire.
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
