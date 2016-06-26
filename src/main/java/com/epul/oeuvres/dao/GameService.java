@@ -36,6 +36,17 @@ public class GameService extends EntityService {
 		return result;
 	}
 
+	public Game getGameFromId(int gameId) {
+		EntityTransaction transaction = startTransaction();
+		transaction.begin();
+		TypedQuery<Game> query = entityManager.createQuery(
+				"SELECT g FROM Game g" +
+					"WHERE g.gameId = :id", Game.class);
+		Game result = query.setParameter("id", gameId).getResultList();
+		emf.close();
+		return result;
+	}
+
 
 	public void insertGame(Game game) {
 		try {

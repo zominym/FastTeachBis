@@ -30,6 +30,10 @@
 			<a href="games/list"><img class="img-circle" src="../../images/people_list.png" width="140" height="140"></a>
 			<h2>Consulter les jeux</h2>
 		</div><!-- /.col-lg-4 -->
+		<div class="col-lg-4">
+			<a href="trainee/attribute/form"><img class="img-circle" src="../../images/people_list.png" width="140" height="140"></a>
+			<h2>Attribuer un jeu à un apprenti</h2>
+		</div><!-- /.col-lg-4 -->
 	</div><!-- /.row -->
 
 

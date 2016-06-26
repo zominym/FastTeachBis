@@ -88,9 +88,49 @@ public class MultiControleur extends MultiActionController {
 
 		request.setAttribute("traineeResults", us.getTraineeResults(Integer.parseInt(request.getParameter("ID"))));
 
+		request.setAttribute("allGames", gs.getGames());
 		destinationPage = "user/traineeDetails";
 
 		return new ModelAndView(destinationPage);
+	}
+
+	@RequestMapping("trainee/attribute/form")
+	public ModelAndView attributeGame(HttpServletRequest request, HttpServletResponse response) {
+		String destinationPage;
+
+		UserService us = new UserService();
+		request.setAttribute("myUsers", us.getTrainees());
+
+		GameService gs = new GameService();
+		request.setAttribute("myGames", gs.getGames());
+
+		destinationPage = "user/attributeGameToTrainee";
+
+		return new ModelAndView(destinationPage);
+	}
+
+	@RequestMapping("trainee/attribute/validation")
+	public ModelAndView attributeValidation(HttpServletRequest request, HttpServletResponse response) {
+		String destinationPage;
+
+		try {
+			int userId = request.getParameter("slcuser");
+			int gameId = request.getParameter("slcgame");
+
+			Registration register = new Registration();
+			register.setUserId(userId);
+			register.setGameId(gameId);
+
+			RegistrationService rs = new RegistrationService();
+			rs.insertRegistration(register);
+
+			destinationPage = "/trainees/list";
+		} catch (Exception e) {
+			request.setAttribute("MesErreurs", e.getMessage());
+			destinationPage = "erreur";
+		}
+		return new ModelAndView("redirect:" +destinationPage);
+
 	}
 
 	@RequestMapping("/trainer/details")
