@@ -169,6 +169,20 @@ public class MultiControleur extends MultiActionController {
 		return new ModelAndView(destinationPage);
 	}
 
+	@RequestMapping("/trainee/edit")
+	public ModelAndView fillUpdateUserForm(HttpServletRequest request, HttpServletResponse response){
+		String destinationPage;
+		destinationPage = "user.updateUser";
+		int id = Integer.parseInt(request.getParameter("ID"));
+		try {
+			User user = new UserService().getUser(id);
+			request.setAttribute("item",user);
+		} catch (MonException e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView(destinationPage);
+	}
+
 	@RequestMapping("/user/insert/form")
 	public ModelAndView fillUserForm(HttpServletRequest request, HttpServletResponse response) {
 		String destinationPage;

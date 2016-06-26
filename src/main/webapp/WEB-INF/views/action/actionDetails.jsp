@@ -18,7 +18,7 @@
 		</div>
 
 		<div class="mp-title">
-			<h1>Liste des action enfants</h1>
+			<h1>Liste des actions enfants</h1>
 		</div>
 
 

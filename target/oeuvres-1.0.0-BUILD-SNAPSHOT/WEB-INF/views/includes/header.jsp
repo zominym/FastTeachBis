@@ -17,6 +17,7 @@
                     <li class="mp-nav-listAdh"><a href="users/list">Lister les utilisateurs</a></li>
                     <li class="mp-nav-listO">  <a href="trainees/list">Lister les apprenants</a></li>
                     <li class="mp-nav-listOw"> <a href="trainers/list">Lister les entraîneurs</a></li>
+                    <li class="mp-nav-listOw"> <a href="games/list">Lister les jeux</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
