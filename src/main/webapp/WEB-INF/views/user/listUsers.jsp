@@ -20,19 +20,19 @@
 
 			<c:forEach items="${myUsers}" var="item">
 			<tr>
-				<td>${item.ID}</td>
+				<td>${item.userId}</td>
 				<td>${item.name}</td>
 				<td>${item.surname}</td>
 				<td>${item.role}</td>
 				<c:if test="${item.role == 'TRAINEE'}">
-					<td class="action"><a href="/trainee/details?ID=${item.ID}">details</a></td>
-					<td class="action"><a href="/trainee/edit?ID=${item.ID}"><span class="fa fa-pencil-square-o"></span></a></td>
-					<td class="action"><a href="/user/delete?ID=${item.ID}"><span class="fa fa-eraser"></span></a></td>
+					<td class="action"><a href="/trainee/details?ID=${item.userId}">details</a></td>
+					<td class="action"><a href="/trainee/edit?ID=${item.userId}"><span class="fa fa-pencil-square-o"></span></a></td>
+					<td class="action"><a href="/user/delete?ID=${item.userId}"><span class="fa fa-eraser"></span></a></td>
 				</c:if>
 				<c:if test="${item.role == 'TRAINER'}">
-					<td class="action"><a href="/trainer/details?ID=${item.ID}">details</a></td>
-					<td class="action"><a href="/trainer/edit?ID=${item.ID}"><span class="fa fa-pencil-square-o"></span></a></td>
-					<td class="action"><a href="/user/delete?ID=${item.ID}"><span class="fa fa-eraser"></span></a></td>
+					<td class="action"><a href="/trainer/details?ID=${item.userId}">details</a></td>
+					<td class="action"><a href="/trainer/edit?ID=${item.userId}"><span class="fa fa-pencil-square-o"></span></a></td>
+					<td class="action"><a href="/user/delete?ID=${item.userId}"><span class="fa fa-eraser"></span></a></td>
 				</c:if>
 				<c:if test="${item.role == 'ADMIN'}">
 					<td class="action">admin</td>

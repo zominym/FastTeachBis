@@ -91,7 +91,7 @@ public class UserService extends EntityService {
 
 			TypedQuery<User> query = entitymanager.createQuery(
 					"SELECT u FROM User u, TrainingGroup t  " +
-					"WHERE u.ID = t.traineeId " +
+					"WHERE u.userId = t.traineeId " +
 					"AND t.trainerId = :id", User.class);
 
 			mesUsers = query.setParameter("id", idTrainer).getResultList();

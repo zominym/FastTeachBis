@@ -9,7 +9,7 @@
 		<div class="mp-title">
 			<h1>Resume de l'apprenant</h1>
 			<ul>
-				<li>${trainee.ID}</li>
+				<li>${trainee.userId}</li>
 				<li>${trainee.name}</li>
 				<li>${trainee.surname}</li>
 				<li>${trainee.mail}</li>
@@ -45,7 +45,7 @@
 		<table border="1" class="table table-bordered table-hover" >
 			<tr>
 				<th>Date</th>
-				<th>ID Inscription</th>
+				<th>userId Inscription</th>
 				<th>Score</th>
 			</tr>
 

@@ -11,7 +11,7 @@
         <h1> Ajout d'un utilisateur </h1>
     </div>
     <div>
-        <form class="mp-form" name='identification' method="post" action="insertUser" onsubmit="return test()">
+        <form class="mp-form" name='identification' method="post" action="do" onsubmit="return test()">
             <div class="mp-input">
                 <p> Nom de l'utilisateur :</p>
                 <input class="form-control" type="text" name="txtname" value="" id ="name" required autofocus>
@@ -29,11 +29,11 @@
                 <input class="form-control" type="password" name="pwd" id ="password" required>
             </div>
             <div class="mp-input">
-                <p>Adresse email de l'utilisateur :</p>
+                <p>Rôle de l'utilisateur :</p>
                 <select class="form-control" name="slcrole" id ="role" required>
-                    <option value="trainee" selected>Apprenti</option>
-                    <option value="trainer">Entraîneur</option>
-                    <option value="admin">Admnistrateur</option>
+                    <option value="TRAINEE" selected>Apprenti</option>
+                    <option value="TRAINER">Entraîneur</option>
+                    <option value="ADMIN">Admnistrateur</option>
                 </select>
             </div>
             <br/>

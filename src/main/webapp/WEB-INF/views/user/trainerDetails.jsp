@@ -9,7 +9,7 @@
     <div class="mp-title">
         <h1>Resume de l'entraîneur</h1>
         <ul>
-            <li>${trainer.ID}</li>
+            <li>${trainer.userId}</li>
             <li>${trainer.name}</li>
             <li>${trainer.surname}</li>
             <li>${trainer.mail}</li>
@@ -33,11 +33,11 @@
 
         <c:forEach items="${trainees}" var="item">
             <tr>
-                <td>${item.ID}</td>
+                <td>${item.userId}</td>
                 <td>${item.name}</td>
                 <td>${item.surname}</td>
                 <td>${item.role}</td>
-                <td class="action"><a href="/trainee/details?ID=${item.ID}">details</a></td>
+                <td class="action"><a href="/trainee/details?ID=${item.userId}">details</a></td>
             </tr>
         </c:forEach>
     </table>

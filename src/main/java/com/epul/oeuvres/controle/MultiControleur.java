@@ -96,8 +96,6 @@ public class MultiControleur extends MultiActionController {
 	@RequestMapping("/trainer/details")
 	public ModelAndView trainerDetails(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String destinationPage;
-//		try {
-		// HttpSession session = request.getSession();
 
 		UserService us = new UserService();
 		request.setAttribute("trainer", us.getUser(Integer.parseInt(request.getParameter("ID"))));
@@ -105,10 +103,6 @@ public class MultiControleur extends MultiActionController {
 		request.setAttribute("trainees", us.getTraineesFromTrainer(Integer.parseInt(request.getParameter("ID"))));
 
 		destinationPage = "user/trainerDetails";
-//		} catch (MonException e) {
-//			request.setAttribute("MesErreurs", e.getMessage());
-//			destinationPage = "erreur";
-//		}
 		return new ModelAndView(destinationPage);
 	}
 
@@ -123,15 +117,22 @@ public class MultiControleur extends MultiActionController {
 		return new ModelAndView(destinationPage);
 	}
 
+	@RequestMapping("/user/insert/form")
+	public ModelAndView fillUserForm(HttpServletRequest request, HttpServletResponse response) {
+		String destinationPage;
 
-	@RequestMapping("insertUser")
+		destinationPage = "user/insertUser";
+		return new ModelAndView(destinationPage);
+	}
+
+	@RequestMapping("/user/insert/do")
 	public ModelAndView insertUser(HttpServletRequest request, HttpServletResponse response) {
 		String destinationPage;
 
 		try {
 			User user = new User();
 			user.setName(request.getParameter("txtfirstname"));
-			user.setSurtname(request.getParameter("txtname"));
+			user.setSurname(request.getParameter("txtname"));
 			user.setMail(request.getParameter("txtemail"));
 			user.setPass(request.getParameter("pwd"));
 			user.setRole(request.getParameter("slcrole"));
@@ -139,12 +140,12 @@ public class MultiControleur extends MultiActionController {
 			UserService service = new UserService();
 			service.insertUser(user);
 
-			destinationPage = "trainees/list";
+			destinationPage = "/trainees/list";
 		} catch (Exception e) {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "erreur";
 		}
-		return new ModelAndView("redirect:" + destinationPage);
+		return new ModelAndView("redirect:" +destinationPage);
 	}
 
 	// /
