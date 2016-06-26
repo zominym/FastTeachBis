@@ -26,15 +26,17 @@
 				<td>${item.role}</td>
 				<c:if test="${item.role == 'TRAINEE'}">
 					<td class="action"><a href="/trainee/details?ID=${item.ID}">details</a></td>
+					<td class="action"><a href="/trainee/edit?ID=${item.ID}"><span class="fa fa-pencil-square-o"></span></a></td>
+					<td class="action"><a href="/user/delete?ID=${item.ID}"><span class="fa fa-eraser"></span></a></td>
 				</c:if>
 				<c:if test="${item.role == 'TRAINER'}">
 					<td class="action"><a href="/trainer/details?ID=${item.ID}">details</a></td>
+					<td class="action"><a href="/trainer/edit?ID=${item.ID}"><span class="fa fa-pencil-square-o"></span></a></td>
+					<td class="action"><a href="/user/delete?ID=${item.ID}"><span class="fa fa-eraser"></span></a></td>
 				</c:if>
 				<c:if test="${item.role == 'ADMIN'}">
 					<td class="action">admin</td>
 				</c:if>
-				<td class="action"><a href="modifyUser?ID=${item.ID}"><span class="fa fa-pencil-square-o"></span></a></td>
-				<td class="action"><a href="deleteUser?ID=${item.ID}"><span class="fa fa-eraser"></span></a></td>
 			</tr>
 			</c:forEach>
 		</table>

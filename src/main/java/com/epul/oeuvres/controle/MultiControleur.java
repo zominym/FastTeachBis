@@ -113,6 +113,17 @@ public class MultiControleur extends MultiActionController {
 		return new ModelAndView(destinationPage);
 	}
 
+	@RequestMapping("/games/list")
+	public ModelAndView displayGames(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String destinationPage;
+
+		GameService gs = new GameService();
+		request.setAttribute("games", gs.getGames());
+
+		destinationPage = "listGames";
+		return new ModelAndView(destinationPage);
+	}
+
 
 	@RequestMapping("insertUser")
 	public ModelAndView insertUser(HttpServletRequest request, HttpServletResponse response) {
