@@ -44,8 +44,9 @@
 
 		<table border="1" class="table table-bordered table-hover" >
 			<tr>
-				<th>Numéro</th>
-				<th>Label</th>
+				<th>Date</th>
+				<th>ID Inscription</th>
+				<th>Score</th>
 			</tr>
 
 			<c:forEach items="${traineeResults}" var="item">

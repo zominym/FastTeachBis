@@ -10,7 +10,6 @@ import java.sql.Date;
  */
 public class ResultPK implements Serializable {
     private Date daydate;
-    private int userId;
     private int registrationId;
 
     @Column(name = "DAYDATE")

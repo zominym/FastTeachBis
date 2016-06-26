@@ -38,8 +38,6 @@
                 <td>${item.surname}</td>
                 <td>${item.role}</td>
                 <td class="action"><a href="/trainee/details?ID=${item.ID}">details</a></td>
-                <td class="action"><a href="modifyUser?ID=${item.ID}"><span class="fa fa-pencil-square-o"></span></a></td>
-                <td class="action"><a href="deleteUser?ID=${item.ID}"><span class="fa fa-eraser"></span></a></td>
             </tr>
         </c:forEach>
     </table>

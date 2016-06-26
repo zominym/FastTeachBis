@@ -30,4 +30,15 @@ public class GameService extends EntityService {
 		return result;
 	}
 
+	public List<Game> getGames() {
+		EntityTransaction transaction = startTransaction();
+		transaction.begin();
+		TypedQuery<Game> query = entitymanager.createQuery("SELECT g FROM Game g", Game.class);
+		List<Game> result = query.getResultList();
+		emf.close();
+		return result;
+	}
+
+
+
 }
