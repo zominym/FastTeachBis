@@ -114,6 +114,29 @@ public class MultiControleur extends MultiActionController {
 	}
 
 
+	@RequestMapping("insertUser")
+	public ModelAndView insertUser(HttpServletRequest request, HttpServletResponse response) {
+		String destinationPage;
+
+		try {
+			User user = new User();
+			user.setName(request.getParameter("txtfirstname"));
+			user.setSurtname(request.getParameter("txtname"));
+			user.setMail(request.getParameter("txtemail"));
+			user.setPass(request.getParameter("pwd"));
+			user.setRole(request.getParameter("slcrole"));
+
+			UserService service = new UserService();
+			service.insertUser(user);
+
+			destinationPage = "trainees/list";
+		} catch (Exception e) {
+			request.setAttribute("MesErreurs", e.getMessage());
+			destinationPage = "erreur";
+		}
+		return new ModelAndView("redirect:" + destinationPage);
+	}
+
 	// /
 	// / Affichage de la page d'accueil
 	// /
@@ -221,4 +244,5 @@ public class MultiControleur extends MultiActionController {
 //		}
 //		return new ModelAndView("redirect:" + destinationPage);
 //	}
+
 }
