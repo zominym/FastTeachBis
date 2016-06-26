@@ -209,10 +209,10 @@ public class MultiControleur extends MultiActionController {
 		return new ModelAndView(destinationPage);
 	}
 
-	@RequestMapping("/trainee/edit")
+	@RequestMapping("/trainee/edit/form")
 	public ModelAndView fillUpdateUserForm(HttpServletRequest request, HttpServletResponse response){
 		String destinationPage;
-		destinationPage = "user.updateUser";
+		destinationPage = "user/updateUser";
 		int id = Integer.parseInt(request.getParameter("ID"));
 		try {
 			User user = new UserService().getUser(id);
@@ -222,6 +222,28 @@ public class MultiControleur extends MultiActionController {
 		}
 		return new ModelAndView(destinationPage);
 	}
+
+    @RequestMapping("trainee/edit/do")
+    public ModelAndView updateUser(HttpServletRequest request, HttpServletResponse response){
+        String destinationPage;
+
+        try {
+            User user = new User();
+            user.setName(request.getParameter("txtfirstname"));
+            user.setSurname(request.getParameter("txtname"));
+            user.setMail(request.getParameter("txtemail"));
+            user.setPass(request.getParameter("pwd"));
+
+            UserService service = new UserService();
+            service.updaterUser(user, Integer.parseInt(request.getParameter("ID")));
+
+            destinationPage = "/trainees/list";
+        } catch (Exception e) {
+            request.setAttribute("MesErreurs", e.getMessage());
+            destinationPage = "erreur";
+        }
+        return new ModelAndView("redirect:" +destinationPage);
+    }
 
 	@RequestMapping("/user/insert/form")
 	public ModelAndView fillUserForm(HttpServletRequest request, HttpServletResponse response) {

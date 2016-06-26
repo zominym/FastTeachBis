@@ -26,7 +26,7 @@
 				<td>${item.role}</td>
 				<c:if test="${item.role == 'TRAINEE'}">
 					<td class="action"><a href="/trainee/details?ID=${item.userId}">details</a></td>
-					<td class="action"><a href="/trainee/edit?ID=${item.userId}"><span class="fa fa-pencil-square-o"></span></a></td>
+					<td class="action"><a href="/trainee/edit/form?ID=${item.userId}"><span class="fa fa-pencil-square-o"></span></a></td>
 					<td class="action"><a href="/user/delete?ID=${item.userId}"><span class="fa fa-eraser"></span></a></td>
 				</c:if>
 				<c:if test="${item.role == 'TRAINER'}">
