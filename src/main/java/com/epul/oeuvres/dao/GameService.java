@@ -1,6 +1,9 @@
 package com.epul.oeuvres.dao;
 
+import com.epul.oeuvres.entities.Action;
 import com.epul.oeuvres.entities.Game;
+import com.epul.oeuvres.entities.Mission;
+import com.epul.oeuvres.entities.Objective;
 import com.epul.oeuvres.meserreurs.MonException;
 
 import javax.persistence.EntityTransaction;
@@ -27,6 +30,26 @@ public class GameService extends EntityService {
 		return result;
 	}
 
+	public List<Mission> getGameMissions(int ID) {
+		EntityTransaction transaction = startTransaction();
+		transaction.begin();
+		TypedQuery<Mission> query = entitymanager.createQuery(
+				"SELECT m FROM Mission m, GameMissions gm  " +
+						"WHERE m.missionId=gm.missionId " +
+						"AND gm.gameId = :id", Mission.class);
+		List<Mission> result = query.setParameter("id", ID).getResultList();
+		emf.close();
+		return result;
+	}
+
+	public Game getGame(int ID) {
+		EntityTransaction transaction = startTransaction();
+		transaction.begin();
+		Game result = entitymanager.find(Game.class, ID);
+		emf.close();
+		return result;
+	}
+
 	public List<Game> getGames() {
 		EntityTransaction transaction = startTransaction();
 		transaction.begin();
@@ -36,6 +59,63 @@ public class GameService extends EntityService {
 		return result;
 	}
 
+	public Mission getMission(int ID) {
+		EntityTransaction transaction = startTransaction();
+		transaction.begin();
+		Mission result = entitymanager.find(Mission.class, ID);
+		emf.close();
+		return result;
+	}
+
+	public List<Objective> getMissionObjectives(int ID) {
+		EntityTransaction transaction = startTransaction();
+		transaction.begin();
+		TypedQuery<Objective> query = entitymanager.createQuery(
+				"SELECT o FROM Objective o " +
+						"WHERE o.missionId = :id", Objective.class);
+		List<Objective> result = query.setParameter("id", ID).getResultList();
+		emf.close();
+		return result;
+	}
+
+	public Objective getObjective(int ID) {
+		EntityTransaction transaction = startTransaction();
+		transaction.begin();
+		Objective result = entitymanager.find(Objective.class, ID);
+		emf.close();
+		return result;
+	}
+
+	public List<Action> getObjectiveActions(int ID) {
+		EntityTransaction transaction = startTransaction();
+		transaction.begin();
+		TypedQuery<Action> query = entitymanager.createQuery(
+				"SELECT a FROM Action a, ObjectiveActions oa " +
+						"WHERE oa.actionId = a.actionId " +
+						"AND oa.objectiveId = :id", Action.class);
+		List<Action> result = query.setParameter("id", ID).getResultList();
+		emf.close();
+		return result;
+	}
+
+	public Action getAction(int ID) {
+		EntityTransaction transaction = startTransaction();
+		transaction.begin();
+		Action result = entitymanager.find(Action.class, ID);
+		emf.close();
+		return result;
+	}
+
+	public List<Action> getActionChildren(int ID) {
+		EntityTransaction transaction = startTransaction();
+		transaction.begin();
+		TypedQuery<Action> query = entitymanager.createQuery(
+				"SELECT a FROM Action a " +
+						"WHERE a.successor = :id", Action.class);
+		List<Action> result = query.setParameter("id", ID).getResultList();
+		emf.close();
+		return result;
+	}
 
 	public void insertGame(Game game) {
 		try {

@@ -6,6 +6,7 @@ import javax.persistence.*;
  * Created by sydne on 15/06/2016.
  */
 @Entity
+@Table(name = "ACTION")
 public class Action {
     private int actionId;
     private String libaction;
