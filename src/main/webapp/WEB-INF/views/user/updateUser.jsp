@@ -11,7 +11,7 @@
         <h1> Modification d'un utilisateur </h1>
     </div>
     <div>
-        <form class="mp-form" name='identification' method="post" action="do" onsubmit="return test()">
+        <form class="mp-form" name='update' method="post" action="do?ID=${item.userId}" onsubmit="return test()">
             <div class="mp-input">
                 <p> Nom de l'utilisateur :</p>
                 <input class="form-control" type="text" name="txtname" value="${item.name}" id ="name" required autofocus>
@@ -27,14 +27,6 @@
             <div class="mp-input">
                 <p>Mot de passe de l'utilisateur :</p>
                 <input class="form-control" type="password" name="pwd" value="${item.pass}" id ="password" required>
-            </div>
-            <div class="mp-input">
-                <p>Rôle de l'utilisateur :</p>
-                <select class="form-control" name="slcrole" id ="role" required>
-                    <option value="TRAINEE" selected>Apprenti</option>
-                    <option value="TRAINER">Entraîneur</option>
-                    <option value="ADMIN">Admnistrateur</option>
-                </select>
             </div>
             <br/>
             <!-- Boutons Ajouter -->
