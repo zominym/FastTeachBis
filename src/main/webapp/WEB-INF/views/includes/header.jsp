@@ -13,7 +13,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="mp-nav-addAdh"> <a href="insertUser">Ajouter un utilisateur</a></li>
+                    <li class="mp-nav-addAdh"> <a href="user/insert/form">Ajouter un utilisateur</a></li>
                     <li class="mp-nav-listAdh"><a href="users/list">Lister les utilisateurs</a></li>
                     <li class="mp-nav-listO">  <a href="trainees/list">Lister les apprenants</a></li>
                     <li class="mp-nav-listOw"> <a href="trainers/list">Lister les entraîneurs</a></li>
