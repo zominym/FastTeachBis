@@ -9,7 +9,6 @@
 			<h1>Liste des utilisateurs</h1>
 		</div>
 
-
 		<table border="1" class="table table-bordered table-hover" >
 			<tr>
 				<th>Numéro</th>

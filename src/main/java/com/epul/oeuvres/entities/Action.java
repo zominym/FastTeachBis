@@ -1,9 +1,6 @@
 package com.epul.oeuvres.entities;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by sydne on 15/06/2016.

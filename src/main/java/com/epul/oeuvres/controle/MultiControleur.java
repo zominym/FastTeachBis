@@ -28,22 +28,6 @@ public class MultiControleur extends MultiActionController {
 
 //	private static final Logger logger = LoggerFactory.getLogger(MultiControleur.class);
 
-	@RequestMapping("listerAdherent")
-	public ModelAndView afficherLesStages(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String destinationPage;
-		try {
-			// HttpSession session = request.getSession();
-			ServiceAdherent unService = new ServiceAdherent();
-			request.setAttribute("mesAdherents", unService.consulterListeAdherents());
-			destinationPage = "listerAdherent";
-		} catch (MonException e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "erreur";
-
-		}
-		return new ModelAndView(destinationPage);
-	}
-
 	@RequestMapping("/users/list")
 	public ModelAndView displayUsers(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String destinationPage;
@@ -51,10 +35,8 @@ public class MultiControleur extends MultiActionController {
 			// HttpSession session = request.getSession();
 			UserService unService = new UserService();
 			request.setAttribute("myUsers", unService.getUsers());
-			for (User u : unService.getUsers()) {
-				System.out.println(u.toString());
-			}
 			destinationPage = "listUsers";
+			System.err.println("CAN YOU SEE ME ???");
 		} catch (MonException e) {
 			request.setAttribute("MesErreurs", e.getMessage());
 			destinationPage = "erreur";
@@ -98,19 +80,17 @@ public class MultiControleur extends MultiActionController {
 	@RequestMapping("/trainee/details")
 	public ModelAndView traineeDetails(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String destinationPage;
-//		try {
-			// HttpSession session = request.getSession();
-			GameService gs = new GameService();
-			request.setAttribute("traineeGames", gs.getGamesOfLearner(Integer.parseInt(request.getParameter("ID"))));
 
-			UserService us = new UserService();
-			request.setAttribute("trainee", us.getUser(Integer.parseInt(request.getParameter("ID"))));
+		UserService us = new UserService();
+		request.setAttribute("trainee", us.getUser(Integer.parseInt(request.getParameter("ID"))));
 
-			destinationPage = "traineeDetails";
-//		} catch (MonException e) {
-//			request.setAttribute("MesErreurs", e.getMessage());
-//			destinationPage = "erreur";
-//		}
+		GameService gs = new GameService();
+		request.setAttribute("traineeGames", gs.getGamesOfLearner(Integer.parseInt(request.getParameter("ID"))));
+
+		request.setAttribute("traineeResults", us.getTraineeResults(Integer.parseInt(request.getParameter("ID"))));
+
+		destinationPage = "traineeDetails";
+
 		return new ModelAndView(destinationPage);
 	}
 
@@ -133,40 +113,6 @@ public class MultiControleur extends MultiActionController {
 		return new ModelAndView(destinationPage);
 	}
 
-
-
-	@RequestMapping("insererAdherent")
-	public ModelAndView insererAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		String destinationPage = "";
-		try {
-			Adherent unAdherent = new Adherent();
-			unAdherent.setNomAdherent(request.getParameter("txtnom"));
-			unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
-			unAdherent.setVilleAdherent(request.getParameter("txtville"));
-			ServiceAdherent unService = new ServiceAdherent();
-			unService.insertAdherent(unAdherent);
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "Erreur";
-		}
-		destinationPage = "listerAdherent";
-		return new ModelAndView("redirect:" + destinationPage);
-	}
-
-	@RequestMapping("ajouterAdherent")
-	public ModelAndView ajouterAdherent(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		String destinationPage;
-		try {
-			destinationPage = "ajouterAdherent";
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "erreur";
-		}
-
-		return new ModelAndView(destinationPage);
-	}
 
 	// /
 	// / Affichage de la page d'accueil
@@ -191,167 +137,88 @@ public class MultiControleur extends MultiActionController {
 		return new ModelAndView("erreur");
 	}
 
-	@RequestMapping("listerOeuvres")
-	public ModelAndView listerOeuvres (HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String destinationPage;
-		try {
-			ServiceOeuvrepret unServiceP = new ServiceOeuvrepret();
-			request.setAttribute("mesOeuvreprets", unServiceP.consulterListeOeuvreprets());
 
-			ServiceOeuvrevente unServiceV = new ServiceOeuvrevente();
-			request.setAttribute("mesOeuvreventes", unServiceV.consulterListeOeuvreventes());
-
-			ServiceAdherent unService = new ServiceAdherent();
-			request.setAttribute("mesAdherents", unService.consulterListeAdherents());
-			destinationPage = "listerOeuvres";
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "erreur";
-		}
-		return new ModelAndView(destinationPage);
-	}
-	@RequestMapping("modifierAdherent")
-	public ModelAndView modifierAdherent (HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String destinationPage;
-		try {
-			int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
-			request.setAttribute("idAdherent", idAdherent);
-			destinationPage = "modifierAdherent";
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "erreur";
-		}
-		return new ModelAndView(destinationPage);
-	}
-	@RequestMapping("updaterAdherent")
-	public ModelAndView updaterAdherent (HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String destinationPage;
-		try {
-			ServiceAdherent unService = new ServiceAdherent();
-			Adherent unAdherent = unService.consulterAdherent(Integer.parseInt(request.getParameter("idAdherent")));
-			unAdherent.setNomAdherent(request.getParameter("txtnom"));
-			unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
-			unAdherent.setVilleAdherent(request.getParameter("txtville"));
-			unService.updaterAdherent(unAdherent, 0);
-
-			destinationPage = "listerAdherent";
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "erreur";
-		}
-		return new ModelAndView("redirect:" + destinationPage);
-	}
-	@RequestMapping("supprimerAdherent")
-	public ModelAndView supprimerAdherent (HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String destinationPage;
-		try {
-			int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
-			ServiceAdherent unService = new ServiceAdherent();
-			unService.supprimerAdherent(idAdherent);
-
-			destinationPage = "listerAdherent";
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "erreur";
-		}
-		return new ModelAndView("redirect:" + destinationPage);
-	}
-	@RequestMapping("ajouterOeuvreVente")
-	public ModelAndView ajouterOeuvreVente (HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String destinationPage;
-		try {
-			int idProprietaire = (int) Float.parseFloat(request.getParameter("idProprietaire"));
-			System.out.println(idProprietaire);
-			request.setAttribute("idProprietaire", idProprietaire);
-			destinationPage = "ajouterOeuvreVente";
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "erreur";
-		}
-		return new ModelAndView(destinationPage);
-	}
-	@RequestMapping("insererOeuvreVente")
-	public ModelAndView insererOeuvreVente (HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String destinationPage;
-		try {
-			String tempstring = request.getParameter("idProprietaire");
-			System.out.println(tempstring);
-			float tempfloat = Float.parseFloat(tempstring);
-			System.out.println(tempfloat);
-			int idProprietaire = (int) tempfloat;
-			Oeuvrevente uneOeuvrevente = new Oeuvrevente();
-			uneOeuvrevente.setTitreOeuvrevente(request.getParameter("txtnom"));
-			uneOeuvrevente.setPrixOeuvrevente(Float.parseFloat(request.getParameter("numprix")));
-			ServiceOeuvrevente unService = new ServiceOeuvrevente();
-			unService.insererOeuvrevente(uneOeuvrevente, idProprietaire);
-
-			destinationPage = "listerOeuvres";
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "erreur";
-		}
-		return new ModelAndView("redirect:" + destinationPage);
-	}
-	@RequestMapping("listerProprietaires")
-	public ModelAndView listerProprietaires (HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String destinationPage;
-		try {
-			ServiceProprietaire unService = new ServiceProprietaire();
-			request.setAttribute("mesProprietaires", unService.consulterListeProprietaires());
-
-			destinationPage = "listerProprietaires";
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "erreur";
-		}
-		return new ModelAndView(destinationPage);
-	}
-	@RequestMapping("supprimerOeuvreVente")
-	public ModelAndView supprimerOeuvreVente (HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String destinationPage;
-		try {
-			int idOeuvrevente = Integer.parseInt(request.getParameter("idOeuvrevente"));
-			ServiceOeuvrevente unService = new ServiceOeuvrevente();
-			unService.supprimerOeuvrevente(idOeuvrevente);
-
-			destinationPage = "listerOeuvres";
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "erreur";
-		}
-		return new ModelAndView("redirect:" + destinationPage);
-	}
-	@RequestMapping("reserverOeuvreVente")
-	public ModelAndView reserverOeuvreVente (HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String destinationPage;
-		try {
-			int idOeuvrevente = Integer.parseInt(request.getParameter("idOeuvrevente"));
-			int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
-			ServiceOeuvrevente unService = new ServiceOeuvrevente();
-
-			if(!unService.getOeuvrevente(idOeuvrevente).isReserved()){
-				unService.reserverOeuvrevente(idOeuvrevente,idAdherent);
-			}
-
-			destinationPage = "listerOeuvres";
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "erreur";
-		}
-		return new ModelAndView("redirect:" + destinationPage);
-	}
-	@RequestMapping("listerReservations")
-	public ModelAndView listerReservations (HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String destinationPage;
-		try {
-			ServiceReservation unService = new ServiceReservation();
-			request.setAttribute("mesReservations", unService.consulterListeReservations());
-
-			destinationPage = "listerReservations";
-		} catch (Exception e) {
-			request.setAttribute("MesErreurs", e.getMessage());
-			destinationPage = "erreur";
-		}
-		return new ModelAndView(destinationPage);
-	}
+//
+//	@RequestMapping("modifierAdherent")
+//	public ModelAndView modifierAdherent (HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String destinationPage;
+//		try {
+//			int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
+//			request.setAttribute("idAdherent", idAdherent);
+//			destinationPage = "modifierAdherent";
+//		} catch (Exception e) {
+//			request.setAttribute("MesErreurs", e.getMessage());
+//			destinationPage = "erreur";
+//		}
+//		return new ModelAndView(destinationPage);
+//	}
+//	@RequestMapping("updaterAdherent")
+//	public ModelAndView updaterAdherent (HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String destinationPage;
+//		try {
+//			ServiceAdherent unService = new ServiceAdherent();
+//			Adherent unAdherent = unService.consulterAdherent(Integer.parseInt(request.getParameter("idAdherent")));
+//			unAdherent.setNomAdherent(request.getParameter("txtnom"));
+//			unAdherent.setPrenomAdherent(request.getParameter("txtprenom"));
+//			unAdherent.setVilleAdherent(request.getParameter("txtville"));
+//			unService.updaterAdherent(unAdherent, 0);
+//
+//			destinationPage = "listerAdherent";
+//		} catch (Exception e) {
+//			request.setAttribute("MesErreurs", e.getMessage());
+//			destinationPage = "erreur";
+//		}
+//		return new ModelAndView("redirect:" + destinationPage);
+//	}
+//	@RequestMapping("supprimerAdherent")
+//	public ModelAndView supprimerAdherent (HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String destinationPage;
+//		try {
+//			int idAdherent = Integer.parseInt(request.getParameter("idAdherent"));
+//			ServiceAdherent unService = new ServiceAdherent();
+//			unService.supprimerAdherent(idAdherent);
+//
+//			destinationPage = "listerAdherent";
+//		} catch (Exception e) {
+//			request.setAttribute("MesErreurs", e.getMessage());
+//			destinationPage = "erreur";
+//		}
+//		return new ModelAndView("redirect:" + destinationPage);
+//	}
+//	@RequestMapping("ajouterOeuvreVente")
+//	public ModelAndView ajouterOeuvreVente (HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String destinationPage;
+//		try {
+//			int idProprietaire = (int) Float.parseFloat(request.getParameter("idProprietaire"));
+//			System.out.println(idProprietaire);
+//			request.setAttribute("idProprietaire", idProprietaire);
+//			destinationPage = "ajouterOeuvreVente";
+//		} catch (Exception e) {
+//			request.setAttribute("MesErreurs", e.getMessage());
+//			destinationPage = "erreur";
+//		}
+//		return new ModelAndView(destinationPage);
+//	}
+//	@RequestMapping("insererOeuvreVente")
+//	public ModelAndView insererOeuvreVente (HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String destinationPage;
+//		try {
+//			String tempstring = request.getParameter("idProprietaire");
+//			System.out.println(tempstring);
+//			float tempfloat = Float.parseFloat(tempstring);
+//			System.out.println(tempfloat);
+//			int idProprietaire = (int) tempfloat;
+//			Oeuvrevente uneOeuvrevente = new Oeuvrevente();
+//			uneOeuvrevente.setTitreOeuvrevente(request.getParameter("txtnom"));
+//			uneOeuvrevente.setPrixOeuvrevente(Float.parseFloat(request.getParameter("numprix")));
+//			ServiceOeuvrevente unService = new ServiceOeuvrevente();
+//			unService.insererOeuvrevente(uneOeuvrevente, idProprietaire);
+//
+//			destinationPage = "listerOeuvres";
+//		} catch (Exception e) {
+//			request.setAttribute("MesErreurs", e.getMessage());
+//			destinationPage = "erreur";
+//		}
+//		return new ModelAndView("redirect:" + destinationPage);
+//	}
 }

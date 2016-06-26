@@ -35,6 +35,27 @@
 			</tr>
 			</c:forEach>
 		</table>
+
+
+		<div class="mp-title">
+			<h1>Liste des résultats</h1>
+		</div>
+
+
+		<table border="1" class="table table-bordered table-hover" >
+			<tr>
+				<th>Numéro</th>
+				<th>Label</th>
+			</tr>
+
+			<c:forEach items="${traineeResults}" var="item">
+				<tr>
+					<td>${item.daydate}</td>
+					<td>${item.registrationId}</td>
+					<td>${item.score}</td>
+				</tr>
+			</c:forEach>
+		</table>
 	</div>
 
 	<script src="/js/navActivate.js" data-navselector="mp-nav-listAdh"></script>

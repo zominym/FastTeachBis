@@ -2,11 +2,18 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="POeuvre" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>com.epul.oeuvres.entities.Adherent</class>
-    <class>com.epul.oeuvres.entities.Reservation</class>
-    <class>com.epul.oeuvres.entities.Oeuvrevente</class>
-    <class>com.epul.oeuvres.entities.Oeuvrepret</class>
-    <class>com.epul.oeuvres.entities.Proprietaire</class>
+    <class>com.epul.oeuvres.entities.Action</class>
+    <class>com.epul.oeuvres.entities.Calendar</class>
+    <class>com.epul.oeuvres.entities.Coefficient</class>
+    <class>com.epul.oeuvres.entities.Game</class>
+    <class>com.epul.oeuvres.entities.GameMissions</class>
+    <class>com.epul.oeuvres.entities.Mission</class>
+    <class>com.epul.oeuvres.entities.Objective</class>
+    <class>com.epul.oeuvres.entities.ObjectiveActions</class>
+    <class>com.epul.oeuvres.entities.Registration</class>
+    <class>com.epul.oeuvres.entities.Result</class>
+    <class>com.epul.oeuvres.entities.TrainingGroup</class>
+    <class>com.epul.oeuvres.entities.User</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
