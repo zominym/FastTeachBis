@@ -132,7 +132,7 @@ public class MultiControleur extends MultiActionController {
 		try {
 			User user = new User();
 			user.setName(request.getParameter("txtfirstname"));
-			user.setSurtname(request.getParameter("txtname"));
+			user.setSurname(request.getParameter("txtname"));
 			user.setMail(request.getParameter("txtemail"));
 			user.setPass(request.getParameter("pwd"));
 			user.setRole(request.getParameter("slcrole"));
