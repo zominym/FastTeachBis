@@ -91,15 +91,21 @@ public class User implements Serializable
         return mail;
     }
 
+    public void setMail(String mail) { this.mail = mail; }
+
     public String getPass()
     {
         return pass;
     }
 
+    public void setPass(String pass) { this.pass = pass; }
+
     public String getRole()
     {
         return role;
     }
+
+    public void setRole(String role) { this.role = role; }
 
 
    @Override
