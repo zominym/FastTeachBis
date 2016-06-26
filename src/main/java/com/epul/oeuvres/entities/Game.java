@@ -1,17 +1,23 @@
 package com.epul.oeuvres.entities;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  * Created by sydne on 15/06/2016.
  */
 @Entity
 @Table(name = "GAME")
-public class Game {
+@XmlRootElement
+public class Game implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private int gameId;
     private String gameLabel;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GAME_ID")
     public int getGameId() {
         return gameId;

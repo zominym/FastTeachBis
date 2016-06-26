@@ -41,7 +41,8 @@ public class GameService extends EntityService {
 		try {
 			EntityTransaction transac = startTransaction();
 			transac.begin();
-			entitymanager.merge(game);
+			entitymanager.persist(game);
+			//entitymanager.merge(game);
 			entitymanager.flush();
 			transac.commit();
 			entitymanager.close();
