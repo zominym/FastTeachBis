@@ -9,6 +9,7 @@ import java.util.List;
 
 public class GameService extends EntityService {
 
+
 	/**
 	 * permet de récupérer la liste des jeux d'un apprenant
 	 * @param learner
@@ -36,5 +37,16 @@ public class GameService extends EntityService {
 	}
 
 
-
+	public void insertGame(Game game) {
+		try {
+			EntityTransaction transac = startTransaction();
+			transac.begin();
+			entitymanager.merge(game);
+			entitymanager.flush();
+			transac.commit();
+			entitymanager.close();
+		} catch (Exception e) {
+			new MonException("Erreur d'insertion", e.getMessage());
+		}
+	}
 }

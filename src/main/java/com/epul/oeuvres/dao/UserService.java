@@ -134,29 +134,6 @@ public class UserService extends EntityService {
 		} catch (Exception e) {
 			new MonException("Erreur d'insertion", e.getMessage());
 		}
-
-		/*unUser.setIdUser(idUser);
-		try {
-			EntityTransaction transac = startTransaction();
-			transac.begin();
-			entitymanager.merge(unUser);
-			entitymanager.close();
-		}  catch (RuntimeException e){
-			new MonException("Erreur de lecture ", e.getMessage());
-		}*/
-
-//		String mysql;
-//
-//		DialogueBd unDialogueBd = DialogueBd.getInstance();
-//		try {
-//			mysql = "update user set nom_user = '" + unUser.getNomUser() +
-//					"', prenom_user ='" + unUser.getPrenomUser() + "', ville_user='"
-//					+ unUser.getVilleUser() + "' where id_user=" + idUser;
-//
-//			unDialogueBd.insertionBD(mysql);
-//		} catch (MonException e) {
-//			throw e;
-//		}
 	}
 
 	public User consulterUser(int numero) throws MonException {
