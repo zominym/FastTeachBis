@@ -25,6 +25,12 @@
 			<h2>Consulter les entraîneurs</h2>
 		</div><!-- /.col-lg-4 -->
 	</div><!-- /.row -->
+	<div class="row">
+		<div class="col-lg-4">
+			<a href="games/list"><img class="img-circle" src="../../images/people_list.png" width="140" height="140"></a>
+			<h2>Consulter les jeux</h2>
+		</div><!-- /.col-lg-4 -->
+	</div><!-- /.row -->
 
 
 </div>
